@@ -150,6 +150,17 @@ html_content = f"""<!DOCTYPE html>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   
+  <!-- KaTeX for LaTeX Math Formula Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  
+  <!-- Mermaid.js for Diagrams & Flowcharts -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  
+  <!-- Highlight.js for Code Highlighting -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark-dimmed.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -186,23 +197,42 @@ html_content = f"""<!DOCTYPE html>
     ::-webkit-scrollbar-thumb {{ background: #1e293b; border-radius: 9999px; }}
     ::-webkit-scrollbar-thumb:hover {{ background: #334155; }}
     
+    /* KaTeX Math Styling */
+    .katex {{ font-size: 1.08em; text-rendering: auto; }}
+    .katex-display {{
+      margin: 1.25rem 0 !important;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 0.6rem 1rem;
+      background: rgba(15, 23, 42, 0.6);
+      border-radius: 0.75rem;
+      border: 1px solid rgba(51, 65, 85, 0.4);
+    }}
+    
     /* Markdown Modal Typography */
-    .markdown-body h1 {{ font-size: 1.75rem; font-weight: 800; color: #f8fafc; margin-top: 1.5rem; margin-bottom: 0.75rem; border-bottom: 1px solid #334155; padding-bottom: 0.5rem; }}
-    .markdown-body h2 {{ font-size: 1.35rem; font-weight: 700; color: #93c5fd; margin-top: 1.5rem; margin-bottom: 0.6rem; border-bottom: 1px solid #1e293b; padding-bottom: 0.3rem; }}
-    .markdown-body h3 {{ font-size: 1.15rem; font-weight: 600; color: #cbd5e1; margin-top: 1.25rem; margin-bottom: 0.5rem; }}
-    .markdown-body p {{ margin-bottom: 0.9rem; line-height: 1.65; color: #cbd5e1; }}
-    .markdown-body ul, .markdown-body ol {{ padding-left: 1.5rem; margin-bottom: 1rem; color: #cbd5e1; }}
+    .markdown-body {{ line-height: 1.7; font-size: 0.95rem; }}
+    .markdown-body h1 {{ font-size: 1.85rem; font-weight: 800; color: #f8fafc; margin-top: 1.75rem; margin-bottom: 0.85rem; border-bottom: 1px solid #334155; padding-bottom: 0.6rem; letter-spacing: -0.02em; }}
+    .markdown-body h2 {{ font-size: 1.45rem; font-weight: 700; color: #93c5fd; margin-top: 2rem; margin-bottom: 0.75rem; border-bottom: 1px solid #1e293b; padding-bottom: 0.4rem; letter-spacing: -0.01em; scroll-margin-top: 5rem; }}
+    .markdown-body h3 {{ font-size: 1.2rem; font-weight: 600; color: #cbd5e1; margin-top: 1.5rem; margin-bottom: 0.6rem; scroll-margin-top: 5rem; }}
+    .markdown-body h4 {{ font-size: 1.05rem; font-weight: 600; color: #e2e8f0; margin-top: 1.25rem; margin-bottom: 0.4rem; }}
+    .markdown-body p {{ margin-bottom: 1rem; line-height: 1.75; color: #cbd5e1; }}
+    .markdown-body ul, .markdown-body ol {{ padding-left: 1.5rem; margin-bottom: 1.25rem; color: #cbd5e1; }}
     .markdown-body ul {{ list-style-type: disc; }}
     .markdown-body ol {{ list-style-type: decimal; }}
-    .markdown-body li {{ margin-bottom: 0.35rem; }}
-    .markdown-body blockquote {{ border-left: 4px solid #6366f1; background: rgba(99, 102, 241, 0.08); padding: 0.75rem 1rem; border-radius: 0.5rem; margin: 1rem 0; color: #e2e8f0; }}
-    .markdown-body code {{ font-family: 'JetBrains Mono', monospace; background: #1e293b; color: #f43f5e; padding: 0.15rem 0.4rem; border-radius: 0.3rem; font-size: 0.88em; }}
-    .markdown-body pre {{ background: #0f172a; border: 1px solid #1e293b; padding: 1rem; border-radius: 0.75rem; overflow-x: auto; margin: 1rem 0; }}
-    .markdown-body pre code {{ background: transparent; color: #e2e8f0; padding: 0; }}
-    .markdown-body table {{ width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.88rem; }}
-    .markdown-body th, .markdown-body td {{ border: 1px solid #334155; padding: 0.6rem 0.85rem; text-align: left; }}
+    .markdown-body li {{ margin-bottom: 0.45rem; line-height: 1.65; }}
+    .markdown-body strong {{ color: #ffffff; font-weight: 700; }}
+    .markdown-body em {{ color: #94a3b8; font-style: italic; }}
+    .markdown-body code {{ font-family: 'JetBrains Mono', monospace; background: #1e293b; color: #fb7185; padding: 0.2rem 0.45rem; border-radius: 0.35rem; font-size: 0.88em; }}
+    .markdown-body pre {{ background: #0b101b; border: 1px solid #1e293b; padding: 1.15rem; border-radius: 0.85rem; overflow-x: auto; margin: 1.25rem 0; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2); }}
+    .markdown-body pre code {{ background: transparent; color: #e2e8f0; padding: 0; font-size: 0.88em; }}
+    .markdown-body table {{ width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9rem; overflow-x: auto; display: block; }}
+    .markdown-body th, .markdown-body td {{ border: 1px solid #334155; padding: 0.75rem 1rem; text-align: left; }}
     .markdown-body th {{ background: #1e293b; color: #f8fafc; font-weight: 600; }}
-    .markdown-body tr:nth-child(even) {{ background: rgba(15, 23, 42, 0.5); }}
+    .markdown-body tr:nth-child(even) {{ background: rgba(15, 23, 42, 0.45); }}
+    .markdown-body hr {{ border: 0; border-top: 1px solid #1e293b; margin: 2rem 0; }}
+    
+    /* Mermaid SVG Responsive */
+    .mermaid svg {{ max-width: 100%; height: auto; }}
   </style>
 </head>
 <body class="bg-[#090d16] text-slate-100 min-h-screen selection:bg-brand-500/30 selection:text-brand-100 antialiased">
@@ -215,7 +245,7 @@ html_content = f"""<!DOCTYPE html>
   </div>
 
   <!-- Navbar -->
-  <nav class="sticky top-0 z-40 backdrop-blur-xl bg-[#090d16]/80 border-b border-slate-800/80 transition-all">
+  <nav class="sticky top-0 z-40 backdrop-blur-xl bg-[#090d16]/85 border-b border-slate-800/80 transition-all">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
       <div class="flex items-center gap-3">
         <span class="text-2xl">🎓</span>
@@ -256,7 +286,7 @@ html_content = f"""<!DOCTYPE html>
           </span>
         </h1>
         <p class="mt-4 text-slate-400 text-sm sm:text-base leading-relaxed max-w-2xl">
-          Repositori mandiri 44 mata kuliah wajib lengkap Semester 1 s/d 8. Menyediakan rangkuman 14 pertemuan, peta konsep, bank soal ujian nyata (UTS/UAS), dan simulasi ujian lisan sidang komprehensif.
+          Repositori mandiri 44 mata kuliah wajib lengkap Semester 1 s/d 8. Dilengkapi formula matematika KaTeX rendered, diagram alur Mermaid, bank soal UTS/UAS asli, dan simulasi sidang komprehensif.
         </p>
       </div>
 
@@ -349,7 +379,7 @@ html_content = f"""<!DOCTYPE html>
         Menampilkan 44 mata kuliah
       </div>
       <div class="flex items-center gap-2 text-xs text-slate-500">
-        <span class="inline-block w-2 h-2 rounded-full bg-indigo-400"></span> Klik judul untuk baca langsung
+        <span class="inline-block w-2 h-2 rounded-full bg-indigo-400"></span> Klik Rangkuman / Bank Soal untuk membaca
       </div>
     </div>
 
@@ -369,33 +399,53 @@ html_content = f"""<!DOCTYPE html>
     </div>
   </main>
 
-  <!-- Markdown Modal Viewer -->
-  <div id="markdownModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-3 sm:p-6 transition-opacity">
-    <div class="bg-[#0b101b] border border-slate-800 rounded-2xl w-full max-w-4xl max-h-[90vh] flex flex-col shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+  <!-- Immersive Markdown Modal Reader (KaTeX + Mermaid + Highlight.js) -->
+  <div id="markdownModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden flex items-center justify-center p-2 sm:p-5 transition-all">
+    <div id="modalDialog" class="bg-[#0b101b] border border-slate-800 rounded-2xl w-full max-w-4xl max-h-[92vh] flex flex-col shadow-2xl overflow-hidden transition-all duration-150">
       
-      <!-- Modal Header -->
-      <div class="px-5 py-4 border-b border-slate-800 flex items-center justify-between bg-slate-900/60">
-        <div class="flex items-center gap-2.5 min-w-0 pr-4">
+      <!-- Modal Top Bar -->
+      <div class="px-5 py-3.5 border-b border-slate-800/90 flex items-center justify-between bg-slate-900/80">
+        <div class="flex items-center gap-3 min-w-0 pr-4">
           <span id="modalIcon" class="text-xl">📖</span>
           <div class="min-w-0">
-            <h2 id="modalTitle" class="text-base font-bold text-white truncate leading-snug">Judul Dokumen</h2>
+            <h2 id="modalTitle" class="text-base sm:text-lg font-bold text-white truncate leading-snug">Judul Dokumen</h2>
             <p id="modalSub" class="text-xs text-slate-400 truncate">Semester & Topik</p>
           </div>
         </div>
-        <div class="flex items-center gap-2 shrink-0">
+        
+        <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
+          <!-- Copy Markdown Button -->
+          <button onclick="copyCurrentMarkdown()" class="p-1.5 sm:px-3 sm:py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-medium border border-slate-700/80 transition flex items-center gap-1" title="Salin Teks Markdown">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+            <span id="copyBtnText" class="hidden sm:inline">Salin</span>
+          </button>
+          
+          <!-- Fullscreen Toggle Button -->
+          <button onclick="toggleFullscreenModal()" class="p-1.5 sm:px-2.5 sm:py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-medium border border-slate-700/80 transition" title="Layar Penuh (Toggle)">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/></svg>
+          </button>
+          
+          <!-- Open in GitHub Link -->
           <a id="modalGithubLink" href="#" target="_blank"
-             class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium border border-slate-700 transition" title="Buka berkas di GitHub">
+             class="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-medium border border-slate-700/80 transition" title="Buka berkas di GitHub">
             <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-            <span class="hidden sm:inline">GitHub</span>
+            <span class="hidden md:inline">GitHub</span>
           </a>
+          
+          <!-- Close Button -->
           <button onclick="closeModal()" class="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition" title="Tutup (Esc)">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
           </button>
         </div>
       </div>
       
-      <!-- Modal Body (Markdown Container) -->
-      <div id="modalBody" class="p-6 sm:p-8 overflow-y-auto markdown-body text-slate-200">
+      <!-- Table of Contents Quick Jump Bar -->
+      <div id="modalToc" class="px-5 py-2 bg-slate-950/90 border-b border-slate-800/80 flex items-center gap-2 overflow-x-auto text-xs scrollbar-none hidden">
+        <!-- Dynamically injected TOC pills -->
+      </div>
+      
+      <!-- Modal Body (Rendered Markdown Container) -->
+      <div id="modalBody" class="p-6 sm:p-10 overflow-y-auto markdown-body text-slate-200">
         <!-- Markdown injected here -->
       </div>
     </div>
@@ -424,6 +474,20 @@ html_content = f"""<!DOCTYPE html>
 
   <!-- Application Logic -->
   <script>
+    // Initialize Mermaid
+    mermaid.initialize({{
+      startOnLoad: false,
+      theme: 'dark',
+      themeVariables: {{
+        darkMode: true,
+        background: '#0b101b',
+        primaryColor: '#6366f1',
+        primaryBorderColor: '#818cf8',
+        primaryTextColor: '#f8fafc',
+        lineColor: '#64748b'
+      }}
+    }});
+
     const dataTree = {json.dumps(data_tree, ensure_ascii=False)};
     
     // Flatten subjects
@@ -441,6 +505,8 @@ html_content = f"""<!DOCTYPE html>
     let currentSemester = 'all';
     let currentTopic = 'all';
     let searchQuery = '';
+    let currentRawMarkdown = '';
+    let isModalFullscreen = false;
 
     const coursesGrid = document.getElementById('coursesGrid');
     const resultCount = document.getElementById('resultCount');
@@ -453,15 +519,12 @@ html_content = f"""<!DOCTYPE html>
       const query = searchQuery.toLowerCase().trim();
 
       const filtered = allSubjects.filter(item => {{
-        // Semester Filter
         if (currentSemester !== 'all' && item.semester_num.toString() !== currentSemester) {{
           return false;
         }}
-        // Topic Filter
         if (currentTopic !== 'all' && item.topic !== currentTopic) {{
           return false;
         }}
-        // Search Query
         if (query) {{
           const matchName = item.name.toLowerCase().includes(query);
           const matchFolder = item.folder.toLowerCase().includes(query);
@@ -600,21 +663,112 @@ html_content = f"""<!DOCTYPE html>
       }}
     }});
 
+    // Markdown Parser with KaTeX & GitHub Callouts Support
+    function renderMarkdownContent(raw) {{
+      currentRawMarkdown = raw;
+      
+      // 1. Protect LaTeX Math Formulas before Markdown Parsing
+      const mathList = [];
+      
+      // Match display math $$ ... $$
+      let text = raw.replace(/\$\$([\s\S]*?)\$\$/g, (_, eq) => {{
+        mathList.push({{ type: 'display', eq: eq.trim() }});
+        return `@@KATEX_DISPLAY_${{mathList.length - 1}}@@`;
+      }});
+      
+      // Match inline math $ ... $
+      text = text.replace(/(?<!\\\\)\$([^$\\n]+?)(?<!\\\\)\$/g, (_, eq) => {{
+        mathList.push({{ type: 'inline', eq: eq.trim() }});
+        return `@@KATEX_INLINE_${{mathList.length - 1}}@@`;
+      }});
+      
+      // 2. Parse Markdown with marked.js
+      let html = marked.parse(text);
+      
+      // 3. Re-inject and render KaTeX Math equations
+      html = html.replace(/@@KATEX_DISPLAY_(\\d+)@@/g, (_, idx) => {{
+        const item = mathList[parseInt(idx, 10)];
+        try {{
+          return katex.renderToString(item.eq, {{
+            displayMode: true,
+            throwOnError: false,
+            trust: true
+          }});
+        }} catch (err) {{
+          console.warn("KaTeX Display Error:", err);
+          return `<div class="katex-error text-rose-400 font-mono text-xs my-2 p-2 bg-rose-950/40 rounded border border-rose-800">$$${{item.eq}}$$</div>`;
+        }}
+      }});
+      
+      html = html.replace(/@@KATEX_INLINE_(\\d+)@@/g, (_, idx) => {{
+        const item = mathList[parseInt(idx, 10)];
+        try {{
+          return katex.renderToString(item.eq, {{
+            displayMode: false,
+            throwOnError: false,
+            trust: true
+          }});
+        }} catch (err) {{
+          console.warn("KaTeX Inline Error:", err);
+          return `<span class="katex-error text-rose-400 font-mono text-xs">$${{item.eq}}$</span>`;
+        }}
+      }});
+      
+      // 4. Transform GitHub-style Alert Callouts (> [!NOTE], > [!TIP], > [!WARNING], > [!IMPORTANT])
+      html = html.replace(/<blockquote>\\s*<p>\\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\\]([\\s\\S]*?)<\\/blockquote>/gi, (_, type, content) => {{
+        const t = type.toUpperCase();
+        let border = "border-blue-500/40 bg-blue-500/10 text-blue-200";
+        let icon = "ℹ️";
+        let label = "CATATAN";
+        
+        if (t === "TIP") {{
+          border = "border-emerald-500/40 bg-emerald-500/10 text-emerald-200";
+          icon = "💡";
+          label = "TIPS";
+        }} else if (t === "WARNING" || t === "CAUTION") {{
+          border = "border-amber-500/40 bg-amber-500/10 text-amber-200";
+          icon = "⚠️";
+          label = "PERHATIAN";
+        }} else if (t === "IMPORTANT") {{
+          border = "border-purple-500/40 bg-purple-500/10 text-purple-200";
+          icon = "📌";
+          label = "PENTING";
+        }}
+        
+        return `
+          <div class="my-5 p-4 rounded-xl border ${{border}} text-xs sm:text-sm shadow-sm">
+            <div class="font-bold flex items-center gap-1.5 mb-1.5 tracking-wider uppercase text-[11px]">
+              <span>${{icon}}</span> ${{label}}
+            </div>
+            <div class="leading-relaxed opacity-95">${{content}}</div>
+          </div>
+        `;
+      }});
+      
+      return html;
+    }}
+
     // Markdown Modal Viewer
     const modal = document.getElementById('markdownModal');
+    const modalDialog = document.getElementById('modalDialog');
     const modalTitle = document.getElementById('modalTitle');
     const modalSub = document.getElementById('modalSub');
     const modalBody = document.getElementById('modalBody');
+    const modalToc = document.getElementById('modalToc');
     const modalGithubLink = document.getElementById('modalGithubLink');
 
     async function openMarkdownViewer(url, title, subtitle, githubUrl) {{
       modalTitle.textContent = title;
       modalSub.textContent = subtitle;
       modalGithubLink.href = githubUrl;
+      modalToc.classList.add('hidden');
+      modalToc.innerHTML = '';
+      
       modalBody.innerHTML = `
-        <div class="py-16 text-center text-slate-400 animate-pulse">
-          <div class="text-3xl mb-2">⏳</div>
-          <div class="text-sm font-medium">Memuat berkas kajian...</div>
+        <div class="py-24 text-center text-slate-400 animate-pulse">
+          <div class="text-4xl mb-3">⏳</div>
+          <div class="text-sm font-semibold text-slate-300">Memuat berkas kajian & mem-parsing LaTeX...</div>
+          <div class="text-xs text-slate-500 mt-1">Menyiapkan rumus KaTeX dan diagram Mermaid</div>
         </div>
       `;
       modal.classList.remove('hidden');
@@ -624,20 +778,73 @@ html_content = f"""<!DOCTYPE html>
         const response = await fetch(url);
         if (!response.ok) throw new Error('Network response was not ok');
         const markdownText = await response.text();
-        modalBody.innerHTML = marked.parse(markdownText);
+        
+        // 1. Render Markdown with KaTeX
+        modalBody.innerHTML = renderMarkdownContent(markdownText);
+        
+        // 2. Render Mermaid Diagrams
+        const mermaidNodes = [];
+        modalBody.querySelectorAll('pre code.language-mermaid, pre code.lang-mermaid').forEach((codeEl, i) => {{
+          const pre = codeEl.closest('pre');
+          const diagramText = codeEl.textContent.trim();
+          const container = document.createElement('div');
+          container.className = 'mermaid my-6 p-4 rounded-2xl bg-slate-950/80 border border-slate-800 flex justify-center overflow-x-auto';
+          container.textContent = diagramText;
+          pre.parentNode.replaceChild(container, pre);
+          mermaidNodes.push(container);
+        }});
+        
+        if (mermaidNodes.length > 0) {{
+          try {{
+            await mermaid.run({{ nodes: mermaidNodes }});
+          }} catch (mErr) {{
+            console.warn("Mermaid execution error:", mErr);
+          }}
+        }}
+        
+        // 3. Highlight Code Blocks
+        modalBody.querySelectorAll('pre code:not(.language-mermaid)').forEach((block) => {{
+          hljs.highlightElement(block);
+        }});
+        
+        // 4. Build Table of Contents Pills
+        const headings = modalBody.querySelectorAll('h2, h3');
+        if (headings.length > 1) {{
+          modalToc.innerHTML = '<span class="text-slate-400 font-semibold text-[11px] shrink-0 mr-1">Lompat ke:</span>';
+          headings.forEach((h, idx) => {{
+            const id = `heading-${{idx}}`;
+            h.id = id;
+            const text = h.textContent.replace(/^[0-9\\.\\s]+/, '').replace(/^🎯\\s*/, '').trim();
+            if (text) {{
+              const pill = document.createElement('a');
+              pill.href = `#${{id}}`;
+              pill.className = 'shrink-0 px-2.5 py-1 rounded-md bg-slate-900 hover:bg-indigo-600 text-slate-300 hover:text-white border border-slate-800 transition text-[11px] font-medium';
+              pill.textContent = text.length > 25 ? text.slice(0, 25) + '…' : text;
+              pill.onclick = (e) => {{
+                e.preventDefault();
+                h.scrollIntoView({{ behavior: 'smooth', block: 'start' }});
+              }};
+              modalToc.appendChild(pill);
+            }}
+          }});
+          modalToc.classList.remove('hidden');
+        }}
+        
+        modalBody.scrollTop = 0;
       }} catch (err) {{
+        console.error("Fetch error:", err);
         modalBody.innerHTML = `
-          <div class="py-12 px-4 text-center max-w-md mx-auto">
-            <div class="text-4xl mb-3">📄</div>
-            <h4 class="font-bold text-base text-white">Pratinjau Langsung Terkendala</h4>
+          <div class="py-16 px-4 text-center max-w-md mx-auto">
+            <div class="text-5xl mb-4">📄</div>
+            <h4 class="font-bold text-lg text-white">Pratinjau Langsung Terkendala</h4>
             <p class="text-xs text-slate-400 mt-2 leading-relaxed">
-              Jika Anda membuka berkas ini via protokol lokal (<code class="text-rose-400">file:///</code>), peramban membatasi permintaan fetch antar berkas karena keamanan CORS.
+              Jika membuka via protokol lokal (<code class="text-rose-400 font-mono">file:///</code>), peramban membatasi permintaan fetch antar berkas karena kebijakan keamanan CORS.
             </p>
-            <div class="mt-5 flex flex-col gap-2">
-              <a href="${{githubUrl}}" target="_blank" class="px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold transition">
+            <div class="mt-6 flex flex-col gap-2.5">
+              <a href="${{githubUrl}}" target="_blank" class="px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-lg shadow-indigo-600/20 transition">
                 🌐 Buka di GitHub (Tampilan Lengkap)
               </a>
-              <a href="${{url}}" target="_blank" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium transition">
+              <a href="${{url}}" target="_blank" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium border border-slate-700 transition">
                 📥 Buka Berkas Markdown Asli
               </a>
             </div>
@@ -649,6 +856,26 @@ html_content = f"""<!DOCTYPE html>
     function closeModal() {{
       modal.classList.add('hidden');
       document.body.style.overflow = 'auto';
+    }}
+
+    function toggleFullscreenModal() {{
+      isModalFullscreen = !isModalFullscreen;
+      if (isModalFullscreen) {{
+        modalDialog.className = 'bg-[#0b101b] border-none w-screen h-screen max-w-none max-h-none flex flex-col shadow-2xl overflow-hidden rounded-none';
+      }} else {{
+        modalDialog.className = 'bg-[#0b101b] border border-slate-800 rounded-2xl w-full max-w-4xl max-h-[92vh] flex flex-col shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-150';
+      }}
+    }}
+
+    function copyCurrentMarkdown() {{
+      if (!currentRawMarkdown) return;
+      navigator.clipboard.writeText(currentRawMarkdown).then(() => {{
+        const copyBtnText = document.getElementById('copyBtnText');
+        copyBtnText.textContent = 'Tersalin!';
+        setTimeout(() => {{ copyBtnText.textContent = 'Salin'; }}, 2000);
+      }}).catch(() => {{
+        alert("Gagal menyalin otomatis, silakan salin manual.");
+      }});
     }}
 
     modal.addEventListener('click', (e) => {{
