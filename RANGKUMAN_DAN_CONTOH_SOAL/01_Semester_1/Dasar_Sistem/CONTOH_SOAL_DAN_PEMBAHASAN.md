@@ -18,14 +18,14 @@ Hitunglah operasi pengurangan desimal berikut: $(+42)_{10} - (+65)_{10}$ menggun
    * Ambil representasi $+65$: `0100 0001`
    * Balik semua bit (Komplemen 1): `1011 1110`
    * Tambahkan 1 (Komplemen 2):
-     $$\begin{array}{r@{\quad}l}
+     $$\begin{array}{rl}
      1011\,1110 & \\
      +\quad\quad\quad 1 & \\
      \hline
      1011\,1111 & = (-65)_{10}
      \end{array}$$
 3. **Lakukan Operasi Penjumlahan: $(+42) + (-65)$:**
-   $$\begin{array}{r@{\quad}l}
+   $$\begin{array}{rl}
    0010\,1010 & (+42) \\
    +\quad 1011\,1111 & (-65) \\
    \hline

@@ -29,3 +29,10 @@ Thumbs.db
 
 # Graphify Internal Agentic Artifacts
 graphify-out/
+
+# Node modules & temp test scripts
+node_modules/
+package-lock.json
+package.json
+test_*.js
+check_*.py

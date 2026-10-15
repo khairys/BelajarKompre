@@ -931,10 +931,16 @@ html_template = r"""<!DOCTYPE html>
     // KaTeX Formula Cleaner Function
     function cleanKatexEquation(eq) {
       if (!eq) return '';
-      let cleaned = eq.replace(/\\\\_([0-9a-zA-Z{])/g, '_$1');
-      cleaned = cleaned.replace(/\\\\_/g, '_');
-      cleaned = cleaned.replace(/\\\\{/g, '{').replace(/\\\\}/g, '}');
-      return cleaned.trim();
+      let cleaned = eq.trim();
+      cleaned = cleaned.replace(/&amp;/g, '&');
+      cleaned = cleaned.replace(/&lt;/g, '<');
+      cleaned = cleaned.replace(/&gt;/g, '>');
+      // Auto-escape unescaped underscores inside \text{...} to prevent KaTeX parse errors
+      cleaned = cleaned.replace(/\\text\{([^{}]+)\}/g, (match, inner) => {
+        const fixed = inner.replace(/(?<!\\)_/g, '\\_');
+        return '\\text{' + fixed + '}';
+      });
+      return cleaned;
     }
 
     // Markdown Parser with KaTeX & GitHub Callouts Support
@@ -951,15 +957,15 @@ html_template = r"""<!DOCTYPE html>
       // STEP 2: Extract LaTeX Math Formulas
       const mathList = [];
       
-      // Match display math: $$...$$ OR \[...\] OR \\[...\\]
-      text = text.replace(/(?:\$\$([\s\S]*?)\$\$|(?:\\\\\\\\|\\\\)\[([\s\S]*?)(?:\\\\\\\\|\\\\)\])/g, (_, eq1, eq2) => {
+      // Match display math: $$...$$ OR \[...\] (including optional multiple backslashes)
+      text = text.replace(/(?:\$\$([\s\S]*?)\$\$|\\+\[([\s\S]*?)\\+\])/g, (_, eq1, eq2) => {
         const rawEq = eq1 !== undefined ? eq1 : eq2;
         mathList.push({ type: 'display', eq: cleanKatexEquation(rawEq) });
         return `\n\nKATEXDISPLAYSHIELD_${mathList.length - 1}_\n\n`;
       });
       
-      // Match inline math: \(...\) OR \\(...\\) OR $...$
-      text = text.replace(/(?:(?:\\\\\\\\|\\\\)\(([\s\S]*?)(?:\\\\\\\\|\\\\)\)|(?<!\\)\$(?!\$)([^$\n]+?)(?<!\\)\$)/g, (_, eq1, eq2) => {
+      // Match inline math: \(...\) OR $...$
+      text = text.replace(/(?:\\+\(([\s\S]*?)\\+\)|(?<!\\)\$(?!\$)([^$\n]+?)(?<!\\)\$)/g, (_, eq1, eq2) => {
         const rawEq = eq1 !== undefined ? eq1 : eq2;
         mathList.push({ type: 'inline', eq: cleanKatexEquation(rawEq) });
         return `KATEXINLINESHIELD_${mathList.length - 1}_`;
@@ -975,7 +981,7 @@ html_template = r"""<!DOCTYPE html>
       
       // STEP 5: Re-inject KaTeX Math equations
       // Display Math
-      html = html.replace(/(?:<p>\s*)?KATEXDISPLAYSHIELD_(\d+)_(?:\s*<\/p>)?/g, (_, idx) => {
+      html = html.replace(/(?:<p[^>]*>\s*)?KATEXDISPLAYSHIELD_(\d+)_(?:\s*<\/p>)?/g, (_, idx) => {
         const item = mathList[parseInt(idx, 10)];
         if (!item) return '';
         try {
