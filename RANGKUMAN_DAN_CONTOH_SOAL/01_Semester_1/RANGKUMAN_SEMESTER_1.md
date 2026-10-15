@@ -1,324 +1,750 @@
-# 🎓 Rangkuman Belajar Ujian Komprehensif Informatika — Semester 1
+# Rangkuman Belajar Ujian Komprehensif Informatika — Semester 1
 
-> **Sintesis Komprehensif Semester 1:** Fondasi Komputasi, Logika Formal, Arsitektur Sistem, dan Matematika Diskrit/Kalkulus  
-> **Departemen:** Informatika, Fakultas Sains dan Matematika, Universitas Diponegoro  
-> **Basis Rujukan:** Repositori Resmi [BelajarKompre](https://github.com/khairys/BelajarKompre) (Kurikulum 2020)
+Semester 1 adalah fondasi untuk memahami ilmu komputer. Di semester ini, kamu mulai mempelajari bagaimana program bekerja, bagaimana komputer merepresentasikan dan memproses informasi, bagaimana masalah dibuktikan secara matematis, serta bagaimana berpikir secara logis.
 
----
+Saya menyusun rangkuman ini berdasarkan delapan dokumen mata kuliah yang tersedia di repository [BelajarKompre](https://github.com/khairys/BelajarKompre). Materi di bawah mengikuti urutan konsep yang tercantum dalam dokumen-dokumen tersebut, dengan penjelasan menggunakan bahasa yang lebih sederhana.
 
-## 🧭 Peta Besar Kurikulum Semester 1
+## Peta besar semester 1
 
-Semester 1 adalah fondasi utama untuk memahami seluruh spektrum ilmu komputer. Di semester ini, mahasiswa mulai mempelajari bagaimana program bekerja dari paradigma fungsional, bagaimana komputer merepresentasikan dan memproses informasi secara digital, bagaimana masalah dibuktikan secara matematis, serta bagaimana bernalar logis secara formal.
+1\. Dasar Pemrograman
 
-```mermaid
-graph TD
-    subgraph Fondasi Komputasi & Logika
-        DP["1. Dasar Pemrograman<br><i>(Algoritma, ADT, Fungsional & Rekursi)</i>"]
-        DS["2. Dasar Sistem<br><i>(Biner, Gerbang Logika, K-Map & Flip-Flop)</i>"]
-        LI["3. Logika Informatika<br><i>(Proposisi, Inferensi, CNF/DNF & FOL)</i>"]
-        SD["4. Struktur Diskrit<br><i>(Himpunan, Relasi, Graf, Induksi & RSA)</i>"]
-        M1["5. Matematika I<br><i>(Kalkulus: Limit, Turunan & Integral)</i>"]
-    end
-    
-    subgraph Pengembangan Diri & Karakter
-        BI["6. Bahasa Inggris<br><i>(Technical English & Abstract Writing)</i>"]
-        PK["7. Pancasila & Kewarganegaraan<br><i>(Etika Iptek, Konstitusi & Kedaulatan Digital)</i>"]
-        OR["8. Olah Raga<br><i>(Kebugaran Jasmani & Ergonomi Komputasi)</i>"]
-    end
+Bagaimana memberikan instruksi kepada komputer untuk menyelesaikan masalah.
 
-    DP & DS & LI & SD & M1 --> KOMPRE["Persiapan Ujian Komprehensif S1 Informatika"]
-```
+2\. Dasar Sistem
 
----
+Bagaimana komputer merepresentasikan data dan membangun rangkaian logika digital.
 
-## 1. Dasar Pemrograman
+3\. Logika Informatika
 
-> Dokumen acuan lengkap: [`RANGKUMAN_MATERI.md`](https://github.com/khairys/BelajarKompre/blob/main/RANGKUMAN_DAN_CONTOH_SOAL/01_Semester_1/Dasar_Pemrograman/RANGKUMAN_MATERI.md)
+Bagaimana memeriksa kebenaran pernyataan dan menarik kesimpulan secara formal.
 
-### Apa yang Dipelajari?
-Dasar Pemrograman mengajarkan cara mengubah masalah menjadi langkah-langkah terstruktur yang dapat dijalankan oleh komputer. Fokus utama perkuliahan ini di Informatika Undip adalah **paradigma pemrograman fungsional** dan **rekursi**. 
+4\. Struktur Diskrit
 
-Paradigma fungsional menekankan pada pemetaan ekspresi matematika dan fungsi murni (*pure function* tanpa efek samping / *no side-effects*), berbeda dengan pemrograman prosedural yang mengandalkan banyak perulangan (`for`/`while`) dan mutasi nilai variabel.
+Bagaimana memahami himpunan, kombinasi, graf, pohon, dan struktur matematis yang digunakan dalam komputasi.
 
-### Urutan Materi Inti:
-1. **Pemahaman Masalah & Dekomposisi Algoritma:**
-   * Memecah masalah kompleks menjadi sub-masalah kecil (*problem decomposition*), mengenali pola, dan menyusun algoritma solutif.
-2. **Tipe Data Dasar & Operator:**
-   * `Integer` (bilangan bulat), `Real` (pecahan/floating-point), `Boolean` (`true`/`false`), dan `Character` (karakter tunggal).
-   * Operator aritmetika (`+`, `-`, `*`, `/`, `div`, `mod`) dan operator logika (`AND`, `OR`, `NOT`).
-3. **Tipe Data Bentukan / Abstract Data Type (ADT):**
-   * Menggabungkan tipe data primitif menjadi entitas bermakna. Contohnya ADT `Point` dengan koordinat $(x, y)$, ADT `Date` dengan $(d, m, y)$.
-   * Komponen ADT: **Konstruktor** (pembentuk objek) dan **Selektor** (pengambil komponen nilai).
-4. **Ekspresi Kondisional:**
-   * Pengambilan keputusan fungsional menggunakan konstruksi `if-then-else` atau `depend-on` bersarang untuk menghasilkan nilai kembalian.
-5. **Konsep Rekursi:**
-   * Fungsi yang memanggil dirinya sendiri dengan argumen yang mengecil menuju kondisi berhenti:
-     $$n! = n \times (n-1)! \quad \text{dengan basis } 0! = 1$$
-   * Dua pilar mutlak rekursi:
-     * **Basis:** Kondisi terminasi saat pemanggilan rekursif harus berhenti.
-     * **Rekurens:** Pola pemecahan masalah dengan mendelegasikan ke sub-masalah yang lebih kecil.
-6. **List Fungsional & Kumpulan Data:**
-   * Struktur list berbasis *head* dan *tail*.
-   * Primitif list: `Konso(e, L)` (tambah elemen di awal), `Konsi(L, e)` (tambah di akhir), `FirstElmt(L)`, `Tail(L)`, `IsEmpty(L)`.
-   * Operasi list rekursif: Menghitung panjang list (`NbElmt`), menjumlahkan elemen, mencari nilai ekstrem ($min/max$), dan membalik list (*reverse*).
-7. **Struktur Lanjutan & Higher-Order Functions:**
-   * Himpunan (*Set* tanpa duplikasi), List of List (representasi matriks), dan Pohon Biner (*Binary Tree*).
-   * Konsep Lambda dan fungsi tingkat tinggi (`map`, `filter`, `fold/reduce`).
+5\. Matematika I
 
-### Target Evaluasi Komprehensif:
-* Mampu menjelaskan perbedaan fundamental paradigma fungsional vs prosedural.
-* Mampu menuliskan fungsi rekursif lengkap dengan penegasan Basis dan Rekurens.
-* Mampu menganalisis alur pemrosesan data list tanpa menggunakan perulangan iteratif.
+Bagaimana memahami perubahan, limit, turunan, dan integral.
 
----
+6\. Bahasa Inggris
 
-## 2. Dasar Sistem
+Bagaimana memahami bacaan akademik, tata bahasa, dan teks teknis Informatika.
 
-> Dokumen acuan lengkap: [`RANGKUMAN_MATERI.md`](https://github.com/khairys/BelajarKompre/blob/main/RANGKUMAN_DAN_CONTOH_SOAL/01_Semester_1/Dasar_Sistem/RANGKUMAN_MATERI.md)
+7\. Pancasila dan Kewarganegaraan
 
-### Apa yang Dipelajari?
-Dasar Sistem menjelaskan fondasi fisik dan logika perangkat keras digital: bagaimana data dan instruksi direpresentasikan dalam bentuk sinyal biner serta bagaimana gerbang logika digabungkan untuk membentuk sirkuit komputasi modern.
+Bagaimana memahami nilai kebangsaan, konstitusi, hak warga negara, dan etika dalam penggunaan teknologi.
 
-### Urutan Materi Inti:
-1. **Sistem Bilangan & Aritmetika Biner:**
-   * Representasi biner (basis 2), desimal (basis 10), oktal (basis 8), dan heksadesimal (basis 16).
-     $$13_{10} = 1101_2 = \text{D}_{16}$$
-   * Representasi bilangan bertanda (*Signed Magnitude, 1's Complement, 2's Complement*).
-2. **Gerbang Logika Dasar & Universal:**
-   * Gerbang dasar: `AND`, `OR`, `NOT`.
-   * Gerbang khusus: `XOR` (detektor perbedaan bit) dan `XNOR`.
-   * Gerbang universal: `NAND` dan `NOR` (dapat digunakan untuk merangkai semua fungsi logika lainnya tanpa gerbang lain).
-3. **Aljabar Boolean & Hukum De Morgan:**
-   * Penyederhanaan ekspresi logika melalui hukum identitas, negasi ganda, distributif, dan hukum De Morgan:
-     $$\overline{A \cdot B} = \overline{A} + \overline{B}, \quad \overline{A + B} = \overline{A} \cdot \overline{B}$$
-4. **Penyederhanaan Visual Karnaugh Map (K-Map):**
-   * Mengelompokkan sel bernilai 1 (*Minterm / Sum of Products*) dalam ukuran pangkat dua ($1, 2, 4, 8, 16$) untuk mendapatkan ekspresi Boolean paling efisien.
-5. **Rangkaian Logika Kombinasional:**
-   * Sirkuit tanpa memori (*output* hanya bergantung pada kombinasi *input* saat ini):
-     * **Half Adder & Full Adder:** Sirkuit penjumlahan bit aritmetika (lengkap dengan *Carry-in* dan *Carry-out*).
-     * **Decoder & Encoder:** Penerjemah kode biner ke jalur aktif atau sebaliknya.
-     * **Multiplexer (MUX) & Demultiplexer (DEMUX):** Selektor data multi-saluran ke satu saluran transmisi.
-6. **Rangkaian Sekuensial & Flip-Flop (Penyimpan State):**
-   * Sirkuit yang memiliki memori internal dan bergantung pada sinyal detak (*clock*).
-   * Latch SR, Flip-Flop D (*Data/Delay*), Flip-Flop JK, dan Flip-Flop T (*Toggle*). Flip-Flop D adalah elemen dasar penyimpan 1 bit RAM.
-7. **Register, Counter & Memori Komputer:**
-   * *Shift Register* (geser seri/paralel), *Binary Counter* sinkron/asinkron, arsitektur SRAM (*Static RAM* berbasis flip-flop), DRAM (*Dynamic RAM* berbasis kapasitor), dan ROM.
+8\. Olah Raga
 
-### Target Evaluasi Komprehensif:
-* Mampu menyederhanakan ekspresi logika multi-variabel menggunakan K-Map 4 variabel.
-* Mampu menjelaskan perbedaan mendasar sirkuit kombinasional vs sekuensial.
-* Mampu menguraikan mekanisme penyimpanan bit pada D Flip-Flop berbasis clock triggering.
+Pengembangan kebugaran fisik, kesehatan, dan kebiasaan hidup aktif.
 
----
+Kita akan membahas masing-masing mata kuliah dari konsep paling dasar hingga tujuan akhir pembelajarannya.
 
-## 3. Logika Informatika
+# 1. Dasar Pemrograman
 
-> Dokumen acuan lengkap: [`RANGKUMAN_MATERI.md`](https://github.com/khairys/BelajarKompre/blob/main/RANGKUMAN_DAN_CONTOH_SOAL/01_Semester_1/Logika_Informatika/RANGKUMAN_MATERI.md)
+Dokumen repo: [Rangkuman Dasar Pemrograman](https://github.com/khairys/BelajarKompre/blob/main/RANGKUMAN_DAN_CONTOH_SOAL/01_Semester_1/Dasar_Pemrograman/RANGKUMAN_MATERI.md)
 
-### Apa yang Dipelajari?
-Logika Informatika mempelajari sistem penalaran formal, validitas argumen, pembuktian kebenaran proposisi, serta logika simbolik tingkat lanjut (First-Order Logic) yang mendasari kecerdasan buatan, sistem pakar, dan verifikasi perangkat lunak.
+## Apa yang dipelajari?
 
-### Urutan Materi Inti:
-1. **Logika Proposisi & Tabel Kebenaran:**
-   * Proposisi atomik, nilai kebenaran (*truth value*), dan operator logika:
-     $$\neg p, \quad p \land q, \quad p \lor q, \quad p \to q, \quad p \leftrightarrow q$$
-   * Klasifikasi formula: **Tautologi** (selalu benar), **Kontradiksi** (selalu salah), dan **Kontingensi** (bergantung input).
-2. **Ekuivalensi Logis:**
-   * Dua ekspresi yang selalu menghasilkan nilai kebenaran identik:
-     $$p \to q \equiv \neg p \lor q$$
-3. **Aturan Inferensi & Validitas Argumen:**
-   * **Modus Ponens:** $[(p \to q) \land p] \implies q$
-   * **Modus Tollens:** $[(p \to q) \land \neg q] \implies \neg p$
-   * **Silogisme Hipotetis:** $[(p \to q) \land (q \to r)] \implies (p \to r)$
-4. **Metode Semantic Tableaux:**
-   * Pohon semantik untuk membuktikan konsistensi atau ketidakkonsistenan himpunan formula; cabang tertutup ($\times$) menandakan adanya kontradiksi ($p$ dan $\neg p$).
-5. **Bentuk Normal (CNF & DNF):**
-   * **Conjunctive Normal Form (CNF):** Konjungsi dari klausa-klausa disjungsi, format standar untuk algoritma pembuktian otomatis (*SAT Solvers*):
-     $$(A \lor B) \land (\neg B \lor C)$$
-   * **Disjunctive Normal Form (DNF):** Disjungsi dari klausa-klausa konjungsi.
-6. **Teknik Resolusi (*Resolution Refutation*):**
-   * Pembuktian keabsahan argumen melalui penegasian kesimpulan (*refutation*). Jika resolusi menghasilkan klausa kosong ($\square$), maka argumen terbukti valid secara sah.
-7. **Logika Predikat Orde Pertama (First-Order Logic / FOL):**
-   * Memperluas proposisi dengan objek, predikat, dan kuantor:
-     * Kuantor Universal ($\forall x$): *"Untuk semua $x$"*.
-     * Kuantor Eksistensial ($\exists x$): *"Terdapat setidaknya satu $x$"*.
-     $$\forall x \, [\text{Mahasiswa}(x) \to \text{Belajar}(x)]$$
-   * Negasi kuantor, unifikasi variabel, dan resolusi predikat.
+Dasar Pemrograman mengajarkan cara mengubah masalah menjadi langkah-langkah yang dapat dijalankan oleh komputer. Dalam dokumen repo ini, fokus utamanya adalah paradigma pemrograman fungsional dan rekursi.
 
-### Target Evaluasi Komprehensif:
-* Mampu menguji keabsahan argumen menggunakan tabel kebenaran, inferensi deduktif, dan Semantic Tableaux.
-* Mampu mengubah kalimat logika proposisi ke bentuk standar CNF.
-* Mampu menerjemahkan kalimat bahasa alami kompleks ke dalam formula FOL berkuantor.
+Paradigma fungsional perlu kamu perhatikan karena penekanannya berbeda dari pemrograman prosedural yang biasanya menggunakan banyak perulangan dan perubahan nilai variabel.
 
----
+### Urutan materi
 
-## 4. Struktur Diskrit
+A. Memahami masalah dan algoritma
 
-> Dokumen acuan lengkap: [`RANGKUMAN_MATERI.md`](https://github.com/khairys/BelajarKompre/blob/main/RANGKUMAN_DAN_CONTOH_SOAL/01_Semester_1/Struktur_Diskrit/RANGKUMAN_MATERI.md)
+Sebelum menulis program, kamu perlu mampu memahami masalah, memecahnya menjadi bagian-bagian kecil, mengenali pola, dan menyusun algoritma penyelesaiannya.
 
-### Apa yang Dipelajari?
-Struktur Diskrit adalah matematika intinya ilmu komputer. Topik-topik di mata kuliah ini (himpunan, relasi, induksi, kombinatorika, graf, dan teori bilangan) menjadi fondasi matematis bagi algoritma penelusuran, arsitektur basis data relasional, jaringan komputer, dan algoritma kriptografi modern.
+Contoh: jika ingin menghitung rata-rata lima nilai mahasiswa, kamu harus menentukan nilai yang masuk, cara menjumlahkan, dan cara membaginya dengan jumlah data.
 
-### Urutan Materi Inti:
-1. **Teori Himpunan (*Set Theory*):**
-   * Operasi gabungan ($A \cup B$), irisan ($A \cap B$), komplemen ($A^c$), selisih ($A - B$), dan beda setangkup ($A \oplus B$). Himpunan kuasa (*Power Set*) dengan kardinalitas $2^{|A|}$.
-2. **Relasi & Karakteristiknya:**
-   * Relasi pada himpunan: Refleksif, Simetris, Transitif, dan Antisimetris.
-   * **Relasi Ekuivalensi:** Memenuhi sifat refleksif, simetris, dan transitif (membentuk partisi himpunan).
-   * **Partial Order Set (Poset):** Memenuhi sifat refleksif, antisimetris, dan transitif.
-3. **Teori Fungsi:**
-   * Pemetaan domain ke kodomain: Fungsi Injektif (*satu-ke-satu*), Surjektif (*pada/onto*), dan Bijektif (korespondensi satu-satu yang memiliki fungsi invers).
-4. **Prinsip Sarang Merpati (*Pigeonhole Principle*):**
-   * Jika $N$ merpati ditempatkan ke dalam $k$ sarang ($N > k$), maka setidaknya ada satu sarang yang berisi $\lceil N/k \rceil$ merpati. Digunakan untuk membuktikan keberadaan kondisi batas tanpa harus menguji seluruh kombinasi.
-5. **Induksi Matematika:**
-   * Pembuktian teorema bilangan bulat dengan 3 langkah berurutan: (1) Langkah Basis $P(1)$, (2) Hipotesis Induksi $P(k)$, dan (3) Langkah Induksi membuktikan kebenaran $P(k+1)$.
-6. **Kombinatorika & Kaidah Pencacahan:**
-   * Kaidah penjumlahan dan perkalian.
-   * **Permutasi** (urutan diperhatikan):
-     $$P(n, r) = \frac{n!}{(n - r)!}$$
-   * **Kombinasi** (urutan tidak diperhatikan):
-     $$C(n, r) = \binom{n}{r} = \frac{n!}{r!(n - r)!}$$
-7. **Relasi Rekurens & Barisan:**
-   * Menyelesaikan persamaan rekurens homogen linier dengan akar persamaan karakteristik (seperti deret Fibonacci $F_n = F_{n-1} + F_{n-2}$).
-8. **Teori Bilangan & Aritmetika Modular:**
-   * Algoritma Euclidean untuk mencari FPB / $\text{GCD}(a, b)$, kongruensi modulo, bilangan prima, dan Invers Modulo.
-     $$17 \bmod 5 = 2$$
-9. **Teori Graf & Pohon (*Trees*):**
-   * Representasi graf (matriks ketetanggaan dan senarai ketetanggaan).
-   * Sirkuit Euler, Sirkuit Hamilton, Graf Planar (Rumus Euler: $V - E + F = 2$), dan Pewarnaan Graf.
-   * Properti Pohon (*Tree*): Graf terhubung tanpa sirkuit; pohon dengan $n$ simpul selalu memiliki tepat $(n - 1)$ sisi.
-10. **Fondasi Kriptografi Kunci Publik (RSA):**
-    * Pemanfaatan bilangan prima besar, fungsi Totient Euler $\phi(n) = (p-1)(q-1)$, dan invers modular $d \cdot e \equiv 1 \pmod{\phi(n)}$ untuk keamanan enkripsi data.
+B. Tipe data dan operator
 
-### Target Evaluasi Komprehensif:
-* Mampu membuktikan keterbagian dan kesamaan deret dengan induksi matematika.
-* Mampu menghitung kompleksitas konfigurasi menggunakan permutasi dan kombinasi.
-* Mampu menganalisis properti graf, spanning tree, dan langkah matematis enkripsi/dekripsi algoritma RSA.
+Komputer mengolah data menggunakan tipe dan operasi yang sesuai.
 
----
+- Integer: bilangan bulat, seperti `10`.
+- Real: bilangan pecahan, seperti `3.5`.
+- Boolean: nilai benar atau salah.
+- Character: satu karakter.
+- Operator aritmetika: tambah, kurang, kali, dan bagi.
+- Operator logika: AND, OR, dan NOT.
 
-## 5. Matematika I
+C. Tipe data bentukan atau Abstract Data Type (ADT)
 
-> Dokumen acuan lengkap: [`RANGKUMAN_MATERI.md`](https://github.com/khairys/BelajarKompre/blob/main/RANGKUMAN_DAN_CONTOH_SOAL/01_Semester_1/Matematika_I/RANGKUMAN_MATERI.md)
+Data kompleks dapat dibentuk dari beberapa nilai sederhana.
 
-### Apa yang Dipelajari?
-Matematika I berfokus pada **Kalkulus Diferensial dan Integral fungsi satu peubah**. Mahasiswa mempelajari konsep perubahan kontinu, laju perubahan sesaat (*turunan*), dan akumulasi luas/volume (*integral*), yang merupakan bahasa matematika esensial untuk grafika komputer, machine learning (gradient descent), dan simulasi komputasi.
+Misalnya, objek `Point` menyimpan koordinat \(x\) dan \(y\). Kamu memerlukan konstruktor untuk membentuk objek dan selektor untuk mengambil komponennya.
 
-### Urutan Materi Inti:
-1. **Sistem Bilangan Real, Pertidaksamaan & Nilai Mutlak:**
-   * Sifat kelengkapan bilangan real, penyelesaian pertidaksamaan rasional, dan sifat jarak nilai mutlak $|x| < a \iff -a < x < a$.
-2. **Fungsi & Karakteristik Grafiknya:**
-   * Domain alami, range, grafik fungsi aljabar, trigonometri, dan fungsi komposisi $(f \circ g)(x)$.
-3. **Limit & Kekontinuan Fungsi:**
-   * Konsep limit intuitif dan formal:
-     $$\lim_{x \to 2} (x + 3) = 5$$
-   * Limit sepihak (kiri dan kanan), limit tak hingga, dan syarat kekontinuan fungsi di titik $x = c$:
-     $$\lim_{x \to c} f(x) = f(c)$$
-4. **Turunan Fungsi (Diferensial):**
-   * Definisi turunan sebagai limit laju perubahan sesaat:
-     $$f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}$$
-   * Aturan diferensiasi: Aturan pangkat, hasil kali $(uv)' = u'v + uv'$, hasil bagi $(u/v)' = \frac{u'v - uv'}{v^2}$, Aturan Rantai (*Chain Rule*), dan turunan implisit.
-5. **Aplikasi Turunan (Optimasi):**
-   * Uji turunan pertama untuk kemonotonan (fungsi naik/turun) dan titik ekstrem lokal ($min/max$).
-   * Uji turunan kedua untuk kecekungan (*concavity*) dan titik belok.
-   * Masalah optimasi praktis (memaksimalkan efisiensi atau meminimalkan biaya).
-6. **Integral Tak Tentu & Teknik Pengintegralan:**
-   * Antiturunan fungsi dasar.
-   * Teknik integrasi: Metode Substitusi, Integral Parsial ($\int u \, dv = uv - \int v \, du$), dan Dekomposisi Pecahan Parsial.
-7. **Integral Tentu & Teorema Dasar Kalkulus (TDK):**
-   * Akumulasi luas di bawah kurva:
-     $$\int_a^b f(x) \, dx = F(b) - F(a) \quad \text{di mana } F'(x) = f(x)$$
-   * Aplikasi geometri integral: Menghitung luas daerah di antara dua kurva dan volume benda putar (metode cakram & cincin).
+Intinya, kamu belajar mengorganisasi data berdasarkan makna dan operasi yang dapat dilakukan terhadapnya.
 
-### Target Evaluasi Komprehensif:
-* Mampu menghitung nilai limit fungsi tak tentu menggunakan manipulasi aljabar atau aturan L'Hôpital.
-* Mampu menurunkan fungsi kompleks menggunakan aturan rantai bersarang.
-* Mampu menyelesaikan masalah optimasi ekstrim dan menghitung integral tentu menggunakan teknik yang tepat.
+D. Ekspresi kondisional
 
----
+Program harus bisa menentukan hasil berdasarkan kondisi tertentu.
 
-## 6. Bahasa Inggris
+Contohnya, sebuah fungsi mengembalikan nilai lulus ketika nilai mahasiswa memenuhi batas kelulusan. Kamu perlu memahami kondisi, operator perbandingan, dan percabangan logis.
 
-> Dokumen acuan lengkap: [`RANGKUMAN_MATERI.md`](https://github.com/khairys/BelajarKompre/blob/main/RANGKUMAN_DAN_CONTOH_SOAL/01_Semester_1/Bahasa_Inggris/RANGKUMAN_MATERI.md)
+E. Rekursi
 
-### Apa yang Dipelajari?
-Mata kuliah Bahasa Inggris di Informatika difokuskan pada **English for Academic Purposes (EAP)** dan **Technical English for Computing**. Mahasiswa dilatih untuk memahami literatur teknis internasional (dokumentasi API, whitepaper arsitektur, dan paper penelitian bereputasi IEEE/ACM), menyusun abstrak karya ilmiah, serta menguasai tata bahasa formal dalam penulisan ilmiah.
+Rekursi terjadi ketika sebuah fungsi memanggil dirinya sendiri untuk menyelesaikan masalah yang lebih kecil.
 
-### Urutan Materi Inti:
-1. **Stative Verbs vs Dynamic Verbs:**
-   * Membedakan kata kerja aksi (*dynamic*: calculate, compile, execute) dengan kata kerja keadaan/mental (*stative*: contain, consist of, belong, know).
-   * *Aturan Kritis:* Stative verbs tidak boleh digunakan dalam bentuk *continuous (-ing)* (Contoh benar: *"The packet contains encrypted headers"*).
-2. **Tenses dalam Konteks Ilmu Komputer:**
-   * *Simple Present Tense:* Fakta umum dan spesifikasi sistem (*"Python supports multiple paradigms"*).
-   * *Simple Past Tense:* Prosedur eksperimen yang telah dilakukan (*"We executed the benchmark on Linux"*).
-   * *Present Perfect Tense:* Status perkembangan riset (*"Researchers have developed novel neural architectures"*).
-3. **Passive Voice dalam Penulisan Ilmiah:**
-   * Menggeser fokus dari pelaku ke objek atau proses rekayasa (*"The dataset was partitioned into 80% training and 20% testing"*).
-4. **Conditional Sentences (Type 0, 1, 2, 3):**
-   * Pemodelan kondisi logika komputasi dalam bahasa Inggris (identik dengan struktur `if-else` dalam pemrograman).
-5. **Klausul Relatif (*Relative Clauses*):**
-   * Penggunaan klausa pembatas (*defining*) dan penjelas (*non-defining*) menggunakan `which`, `that`, `who` untuk mendefinisikan terminologi sistem secara presisi.
-6. **Struktur Penulisan Abstrak Ilmiah (*Scientific Abstract Writing*):**
-   * Sistematika baku 5 elemen abstrak: (1) Background/Problem Statement, (2) Proposed Method/Architecture, (3) Implementation Scope, (4) Empirical Results, dan (5) Conclusion.
+Contohnya, faktorial:
 
-### Target Evaluasi Komprehensif:
-* Mampu membaca dan merangkum intisari paper teknis komputer berbahasa Inggris.
-* Mampu menulis paragraf deskripsi sistem dan abstrak penelitian dengan tata bahasa ilmiah yang baku.
+\[ n!=n\times(n-1)! \]
 
----
+dengan kondisi dasar \(0!=1\).
 
-## 7. Pancasila dan Kewarganegaraan
+Ada dua komponen utama yang wajib dipahami:
 
-> Dokumen acuan lengkap: [`RANGKUMAN_MATERI.md`](https://github.com/khairys/BelajarKompre/blob/main/RANGKUMAN_DAN_CONTOH_SOAL/01_Semester_1/Pancasila_dan_Kewarganegaraan/RANGKUMAN_MATERI.md)
+- Basis: kondisi saat rekursi berhenti.
+- Rekurens: cara menyelesaikan masalah dengan memanggil fungsi untuk masalah yang lebih kecil.
 
-### Apa yang Dipelajari?
-Mata kuliah wajib nasional ini membentuk karakter etis, integritas kebangsaan (*civic virtue*), dan kesadaran konstitusi bagi calon Sarjana Komputer. Bagi mahasiswa Informatika, nilai-nilai Pancasila menjadi kompas moral dalam menghadapi disrupsi teknologi: privasi data warga negara, keadilan algoritma AI, kedaulatan siber (*cyber sovereignty*), dan pencegahan kejahatan digital.
+Tanpa basis yang benar, rekursi dapat berjalan tanpa akhir.
 
-### Urutan Materi Inti:
-1. **Pancasila sebagai Sistem Filsafat & Ideologi Terbuka:**
-   * Landasan ontologis (manusia sebagai makhluk monopluralis), epistemologis (digali dari kearifan lokal bangsa), dan aksiologis (hierarki nilai moral kemanusiaan).
-   * Dimensi ideologi terbuka: Realitas, Idealitas, dan Fleksibilitas dalam merespons kemajuan teknologi informasi.
-2. **Pancasila sebagai Dasar Nilai Etika Pengembangan Iptek:**
-   * Menempatkan kemajuan rekayasa perangkat lunak dan kecerdasan buatan agar tidak mendegradasi martabat manusia, tidak memperlebar kesenjangan sosial, dan menjunjung keadilan.
-3. **Konstitusi & Hak Asasi Manusia (HAM):**
-   * UUD 1945 sebagai hukum dasar tertinggi.
-   * Perlindungan hak privasi dan data pribadi warga negara sebagai hak asasi konstitusional (Pasal 28G ayat 1 UUD 1945 dan implementasi UU Perlindungan Data Pribadi No. 27/2022).
-4. **Geopolitik Wawasan Nusantara & Ketahanan Nasional Digital:**
-   * Memandang ruang digital Indonesia sebagai kesatuan ruang kedaulatan nasional yang wajib dilindungi dari ancaman spionase siber, disinformasi, dan serangan infrastruktur kritis.
+F. List dan pengolahan kumpulan data
 
-### Target Evaluasi Komprehensif:
-* Memahami tanggung jawab etis dan moral seorang insinyur komputer terhadap bangsa dan masyarakat.
-* Mampu mengaitkan nilai konstitusi dengan etika perlindungan privasi data dan keamanan informasi.
+Kamu mempelajari cara menyimpan sekumpulan elemen dalam list fungsional.
 
----
+Operasi yang perlu dikenal antara lain `Konso` untuk menambahkan elemen di awal, `Konsi` untuk menambahkan elemen di akhir, `FirstElmt` untuk mengambil elemen pertama, dan `Tail` untuk mengambil sisa list.
 
-## 8. Olah Raga
+Dari sini, kamu belajar menghitung panjang list, menjumlahkan elemen, mencari nilai maksimum, serta membalik urutan list secara rekursif.
 
-> Dokumen acuan lengkap: [`RANGKUMAN_MATERI.md`](https://github.com/khairys/BelajarKompre/blob/main/RANGKUMAN_DAN_CONTOH_SOAL/01_Semester_1/Olah_Raga/RANGKUMAN_MATERI.md)
+G. Himpunan, list of list, dan pohon biner
 
-### Apa yang Dipelajari?
-Mata kuliah praktikum lapangan ini berfokus pada pembinaan kebugaran jasmani, stamina fisik, dan kesehatan mental mahasiswa Informatika guna mengimbangi tingginya beban belajar komputasi dan durasi duduk yang lama di depan monitor (*screen time*).
+Materi berkembang menjadi struktur data yang lebih kompleks.
 
-### Urutan Materi Inti:
-1. **Komponen Kebugaran Jasmani Utama:**
-   * **Daya Tahan Kardiorespirasi (*Cardiovascular Endurance*):** Kapasitas jantung dan paru-paru dalam menyuplai oksigen melalui latihan aerobik (lari/jogging, bleep test).
-   * **Kekuatan Otot (*Muscular Strength & Endurance*):** Latihan beban tubuh / kalistenik dasar (*push-up, sit-up, plank*) untuk memperkuat otot inti tubuh (*core muscles*).
-   * **Kelenturan (*Flexibility*):** Peregangan dinamis dan statis untuk melenturkan sendi dan otot.
-2. **Ergonomi Kerja Komputasi & Pencegahan Cedera:**
-   * Edukasi postur tubuh yang benar saat melakukan *coding* di meja kerja.
-   * Pencegahan penyakit akibat kerja komputer: *Carpal Tunnel Syndrome* (CTS) pada pergelangan tangan, *Computer Vision Syndrome* (mata lelah), dan *Lower Back Pain* (nyeri punggung bawah).
-3. **Sportivitas & Kerja Sama Tim (*Teamwork*):**
-   * Pembinaan mental kepemimpinan, kepatuhan pada aturan, dan respek melalui cabang olahraga beregu (futsal, bola voli, basket, bulu tangkis).
+- Himpunan atau set: koleksi elemen tanpa duplikasi.
+- List of list: list yang elemen-elemennya juga berupa list, misalnya untuk merepresentasikan matriks.
+- Pohon biner: struktur data yang setiap simpulnya memiliki paling banyak dua anak.
+- Lambda dan higher-order functions: fungsi tanpa nama dan fungsi yang dapat menerima atau menghasilkan fungsi lain, seperti `map` dan `filter`.
 
-> [!NOTE]
-> **Catatan Ujian Komprehensif:** Mata kuliah Olah Raga bersifat praktikum lapangan fisik dan **tidak diujikan secara teori** dalam sidang ujian lisan komprehensif. Mahasiswa cukup memastikan kelulusan nilai (minimal C) sebagai syarat yudisium.
+### Target setelah mempelajari Dasar Pemrograman
 
----
+Kamu seharusnya mampu membaca suatu masalah, menentukan struktur datanya, menulis fungsi, menjelaskan basis dan rekurens, serta menelusuri hasil pemanggilan fungsi.
 
-## 🎯 Kesimpulan Sintesis Semester 1
+Pertanyaan komprehensif yang harus bisa kamu jawab: Apa perbedaan paradigma fungsional dan prosedural? Mengapa rekursi membutuhkan basis? Bagaimana memproses list tanpa menggunakan perulangan biasa?
 
-Semester 1 membangun pondasi kokoh seorang calon Sarjana Komputer melalui sinergi multidimensi:
-* **Logika & Pemrograman:** Dilatih secara fungsional melalui *Dasar Pemrograman* dan diperkuat oleh *Logika Informatika*.
-* **Matematika Terapan:** Dibentuk oleh *Struktur Diskrit* (untuk algoritma diskrit/graf/kripto) dan *Matematika I* (untuk laju perubahan kontinu dan optimasi).
-* **Perangkat Keras:** Dipahami fondasi fisik biner dan gerbang logikanya melalui *Dasar Sistem*.
-* **Komunikasi & Karakter:** Dilengkapi oleh *Bahasa Inggris* akademik, etika moral *Pancasila*, dan stamina fisik *Olah Raga*.
+# 2. Dasar Sistem
+
+Dokumen repo: [Rangkuman Dasar Sistem](https://github.com/khairys/BelajarKompre/blob/main/RANGKUMAN_DAN_CONTOH_SOAL/01_Semester_1/Dasar_Sistem/RANGKUMAN_MATERI.md)
+
+## Apa yang dipelajari?
+
+Dasar Sistem menjelaskan fondasi perangkat keras digital: bagaimana informasi direpresentasikan dalam bentuk biner dan bagaimana rangkaian elektronik melakukan operasi logika.
+
+Bayangkan komputer sebagai kumpulan rangkaian yang memproses sinyal. Mata kuliah ini membahas prinsip matematis dan logika di balik rangkaian tersebut.
+
+### Urutan materi
+
+A. Sistem bilangan dan representasi data
+
+Komputer menggunakan biner, yaitu bilangan berbasis 2. Selain itu, kamu perlu memahami desimal berbasis 10, oktal berbasis 8, dan heksadesimal berbasis 16.
+
+Contoh:
+
+\[ 13_{10}=1101_2 \]
+
+Kamu belajar konversi antarbasis, operasi aritmetika biner, dan representasi bilangan bertanda.
+
+B. Gerbang logika
+
+Gerbang logika menerima satu atau beberapa input lalu menghasilkan output berdasarkan aturan tertentu.
+
+| Gerbang      | Fungsi                                                                                       |
+| ------------ | -------------------------------------------------------------------------------------------- |
+| AND          | Bernilai 1 jika semua input bernilai 1                                                       |
+| OR           | Bernilai 1 jika minimal satu input bernilai 1                                                |
+| NOT          | Membalik nilai input                                                                         |
+| XOR          | Bernilai 1 jika kedua input berbeda                                                          |
+| NAND dan NOR | Kebalikan dari AND dan OR; keduanya dapat digunakan untuk membangun rangkaian logika lainnya |
+
+Kamu harus bisa membaca tabel kebenaran (truth table) dan menentukan output dari kombinasi input.
+
+C. Aljabar Boolean
+
+Aljabar Boolean merupakan matematika yang digunakan untuk menyederhanakan ekspresi logika.
+
+Misalnya, kamu mempelajari hukum identitas, komplemen, distributif, serta hukum De Morgan.
+
+Tujuannya adalah menghasilkan rangkaian yang lebih sederhana tanpa mengubah fungsi logikanya.
+
+D. Karnaugh Map (K-Map)
+
+K-Map membantu menyederhanakan fungsi Boolean secara visual melalui pengelompokan sel bernilai 1 atau 0.
+
+Kemampuan pentingnya bukan sekadar menggambar peta, tetapi menentukan kelompok dengan benar dan menghasilkan persamaan Boolean yang lebih sederhana.
+
+E. Rangkaian kombinasional
+
+Rangkaian kombinasional menghasilkan output berdasarkan input saat ini saja, tanpa menyimpan keadaan sebelumnya.
+
+Contohnya:
+
+- Half adder dan full adder untuk penjumlahan biner.
+- Comparator untuk membandingkan dua bilangan.
+- Decoder dan encoder untuk menerjemahkan representasi data.
+- Multiplexer untuk memilih salah satu dari beberapa input.
+
+F. Rangkaian sekuensial dan flip-flop
+
+Berbeda dari rangkaian kombinasional, rangkaian sekuensial memiliki keadaan atau state yang disimpan.
+
+Kamu akan mempelajari SR latch serta SR, D, JK, dan T flip-flop. Elemen-elemen ini menjadi dasar penyimpanan satu bit dan perubahan keadaan berdasarkan sinyal clock.
+
+G. Counter, register, dan memori
+
+Materi berlanjut pada rangkaian yang menyimpan dan mengelola data:
+
+- Counter: menghitung urutan keadaan atau pulsa.
+- Register: menyimpan sekumpulan bit.
+- Shift register: menggeser posisi bit.
+- SRAM dan DRAM: jenis memori dengan karakteristik penyimpanan berbeda.
+- ROM dan flash memory: penyimpanan nonvolatil yang mempertahankan data ketika daya dimatikan.
+
+### Target setelah mempelajari Dasar Sistem
+
+Kamu seharusnya mampu mengonversi bilangan, membaca tabel kebenaran, menyederhanakan persamaan Boolean, membedakan rangkaian kombinasional dan sekuensial, serta menjelaskan cara flip-flop menyimpan bit.
+
+Pertanyaan komprehensif yang perlu dikuasai: Mengapa komputer menggunakan biner? Apa perbedaan rangkaian kombinasional dan sekuensial? Mengapa D flip-flop dapat digunakan untuk menyimpan data?
+
+# 3. Logika Informatika
+
+Dokumen repo: [Rangkuman Logika Informatika](https://github.com/khairys/BelajarKompre/blob/main/RANGKUMAN_DAN_CONTOH_SOAL/01_Semester_1/Logika_Informatika/RANGKUMAN_MATERI.md)
+
+## Apa yang dipelajari?
+
+Logika Informatika mengajarkan cara menentukan apakah suatu pernyataan benar, apakah sebuah kesimpulan mengikuti premisnya, dan bagaimana kebenaran tersebut dapat dibuktikan secara formal.
+
+Perbedaan utamanya dari Struktur Diskrit adalah penekanannya pada sistem logika dan penalaran formal.
+
+### Urutan materi
+
+A. Proposisi dan operator logika
+
+Proposisi adalah pernyataan yang bernilai benar atau salah.
+
+Misalnya:
+
+- \(p\): Komputer sedang menyala.
+- \(q\): Sistem operasi sedang berjalan.
+
+Dari dua proposisi tersebut, kamu mempelajari operator:
+
+\[ \neg p,\quad p\land q,\quad p\lor q,\quad p\to q \]
+
+Artinya secara berurutan: NOT, AND, OR, dan implikasi.
+
+Kamu juga mempelajari tabel kebenaran, tautologi, kontradiksi, dan kontingensi.
+
+B. Ekuivalensi logis
+
+Dua ekspresi disebut ekuivalen secara logis apabila memiliki nilai kebenaran yang sama untuk semua kemungkinan input.
+
+Contoh hukum De Morgan:
+
+\[ \neg(p\land q)\equiv\neg p\lor\neg q \]
+
+Kemampuan ini penting ketika menyederhanakan kondisi program atau membuktikan suatu pernyataan.
+
+C. Aturan inferensi
+
+Inferensi adalah cara menarik kesimpulan dari premis.
+
+Contoh Modus Ponens:
+
+1. Jika hujan, jalan menjadi basah.
+2. Hujan sedang turun.
+3. Kesimpulan: jalan menjadi basah.
+
+Dalam logika simbolik:
+
+\[ p\to q,\ p\ \therefore q \]
+
+Kamu mempelajari aturan inferensi lainnya seperti Modus Tollens dan silogisme hipotetis.
+
+D. Semantic Tableaux
+
+Metode pohon semantik digunakan untuk menguji konsistensi atau validitas argumen.
+
+Kamu menguraikan ekspresi logika menjadi cabang-cabang sesuai aturan. Cabang yang mengandung proposisi dan negasinya sekaligus dapat ditutup karena kontradiktif.
+
+E. Bentuk normal CNF dan DNF
+
+Ekspresi logika dapat diubah ke format standar.
+
+- CNF: konjungsi dari klausa-klausa disjungtif.
+- DNF: disjungsi dari bagian-bagian konjungtif.
+
+Contohnya, \((p\lor q)\land r\) merupakan CNF, sedangkan \((p\land q)\lor r\) merupakan DNF.
+
+Kamu perlu memahami bagaimana mengubah ekspresi dari satu bentuk ke bentuk lainnya.
+
+F. Resolusi dan pembuktian melalui kontradiksi
+
+Resolusi digunakan untuk memperoleh klausa baru dari klausa-klausa yang memiliki literal komplementer.
+
+Untuk menguji validitas argumen melalui resolution refutation, kamu mengambil premis, menegasikan kesimpulan, lalu mencoba memperoleh kontradiksi.
+
+G. Logika predikat orde pertama (First-Order Logic/FOL)
+
+Logika berkembang dari pernyataan sederhana menjadi pernyataan mengenai objek, sifat, dan relasi.
+
+Kamu mempelajari:
+
+- Predikat, seperti `Mahasiswa(x)`.
+- Kuantor universal \(\forall\), yang berarti untuk semua.
+- Kuantor eksistensial \(\exists\), yang berarti terdapat setidaknya satu.
+- Negasi kuantor, substitusi, unifikasi, dan resolusi FOL.
+
+Contoh:
+
+\[ \forall x,\ Mahasiswa(x)\to Belajar(x) \]
+
+Artinya, setiap individu yang merupakan mahasiswa memenuhi pernyataan bahwa ia belajar.
+
+### Target setelah mempelajari Logika Informatika
+
+Kamu seharusnya mampu menghitung tabel kebenaran, membedakan tautologi dan kontradiksi, menerapkan aturan inferensi, mengubah ekspresi ke CNF/DNF, serta menerjemahkan pernyataan bahasa sehari-hari menjadi logika predikat.
+
+Pertanyaan penting: Apa perbedaan implikasi dan ekuivalensi? Mengapa argumen yang kesimpulannya benar belum tentu valid? Apa fungsi kuantor universal dan eksistensial?
+
+# 4. Struktur Diskrit
+
+Dokumen repo: [Rangkuman Struktur Diskrit](https://github.com/khairys/BelajarKompre/blob/main/RANGKUMAN_DAN_CONTOH_SOAL/01_Semester_1/Struktur_Diskrit/RANGKUMAN_MATERI.md)
+
+## Apa yang dipelajari?
+
+Struktur Diskrit mempelajari struktur matematika yang terdiri atas elemen-elemen terpisah atau dapat dihitung. Bidang ini sangat penting untuk algoritma, struktur data, basis data, jaringan, dan kriptografi.
+
+### Urutan materi
+
+A. Himpunan
+
+Himpunan adalah kumpulan objek yang terdefinisi dengan jelas.
+
+Jika \(A=\{1,2,3\}\) dan \(B=\{3,4,5\}\), maka:
+
+\[ A\cup B=\{1,2,3,4,5\} \]
+
+\[ A\cap B=\{3\} \]
+
+Kamu juga mempelajari selisih himpunan, komplemen, subset, dan himpunan kuasa.
+
+B. Relasi
+
+Relasi menjelaskan hubungan antara elemen-elemen suatu himpunan.
+
+Misalnya, hubungan “lebih besar dari”, “sama dengan”, atau “merupakan teman dari”.
+
+Sifat relasi yang perlu dipahami mencakup refleksif, simetris, antisimetris, dan transitif. Kombinasi sifat tertentu menghasilkan relasi ekuivalensi atau partial order.
+
+C. Fungsi
+
+Fungsi memetakan setiap elemen domain ke tepat satu elemen kodomain.
+
+Kamu mempelajari domain, kodomain, range, serta jenis pemetaan seperti injektif, surjektif, dan bijektif.
+
+Konsep ini menjadi dasar pemahaman fungsi dalam pemrograman dan matematika.
+
+D. Prinsip sarang merpati (Pigeonhole Principle)
+
+Jika jumlah objek lebih banyak daripada jumlah wadah, maka minimal satu wadah harus berisi lebih dari satu objek.
+
+Misalnya, jika enam orang ditempatkan ke dalam lima kelompok, setidaknya ada satu kelompok yang berisi dua orang atau lebih.
+
+Prinsip ini digunakan untuk membuktikan keberadaan suatu kondisi tanpa harus memeriksa seluruh kemungkinan satu per satu.
+
+E. Induksi matematika
+
+Induksi digunakan untuk membuktikan pernyataan yang berlaku untuk bilangan bulat dalam suatu rentang.
+
+Prosesnya memiliki tiga bagian:
+
+1. Membuktikan kasus dasar.
+2. Mengasumsikan pernyataan benar untuk \(k\).
+3. Membuktikan bahwa pernyataan juga benar untuk \(k+1\).
+
+Induksi banyak digunakan untuk membuktikan rumus penjumlahan, sifat struktur data, dan kebenaran algoritma.
+
+F. Kombinatorika dan pencacahan
+
+Kombinatorika membahas cara menghitung banyaknya kemungkinan.
+
+Kamu harus membedakan:
+
+- Permutasi: urutan diperhatikan.
+- Kombinasi: urutan tidak diperhatikan.
+
+Untuk \(n\) objek yang dipilih \(r\) objek sekaligus tanpa pengulangan:
+
+\[ P(n,r)=\frac{n!}{(n-r)!} \]
+
+\[ C(n,r)=\frac{n!}{r!(n-r)!} \]
+
+Kombinatorika digunakan dalam analisis kompleksitas, probabilitas diskrit, dan perhitungan kemungkinan konfigurasi.
+
+G. Relasi rekurens
+
+Relasi rekurens mendefinisikan suatu urutan berdasarkan nilai sebelumnya.
+
+Contohnya, barisan Fibonacci:
+
+\[ F_n=F_{n-1}+F_{n-2} \]
+
+dengan nilai awal yang ditentukan.
+
+Kamu mempelajari bagaimana memodelkan urutan tersebut dan mencari rumus atau solusi relasinya.
+
+H. Teori bilangan dan aritmetika modular
+
+Materinya meliputi keterbagian, FPB, algoritma Euclid, kongruensi, invers modulo, serta teorema bilangan yang mendukung kriptografi.
+
+Contoh:
+
+\[ 17\bmod 5=2 \]
+
+Artinya, sisa pembagian 17 dengan 5 adalah 2.
+
+I. Graf dan pohon
+
+Graf terdiri dari simpul (vertex) dan sisi (edge) yang menggambarkan hubungan.
+
+Kamu mempelajari derajat simpul, lintasan, sirkuit, graf planar, pewarnaan graf, pohon, dan spanning tree.
+
+Contoh penerapan: komputer dapat merepresentasikan jaringan sebagai graf, lalu menggunakan algoritma pencarian lintasan untuk menemukan rute.
+
+J. Dasar kriptografi RSA
+
+Pada bagian akhir, materi menghubungkan teori bilangan dengan keamanan informasi.
+
+RSA menggunakan dua kunci yang berkaitan secara matematis: kunci publik untuk enkripsi dan kunci privat untuk dekripsi. Pemahaman dasarnya melibatkan bilangan prima, modulo, dan invers modular.
+
+### Target setelah mempelajari Struktur Diskrit
+
+Kamu seharusnya dapat melakukan operasi himpunan, memeriksa sifat relasi, membedakan permutasi dan kombinasi, membuktikan pernyataan menggunakan induksi, menyelesaikan soal graf dan pohon, serta memahami mengapa aritmetika modular menjadi dasar kriptografi.
+
+Pertanyaan penting: Apa perbedaan relasi dan fungsi? Mengapa jumlah sisi pohon dengan \(n\) simpul adalah \(n-1\)? Kapan menggunakan permutasi dan kapan menggunakan kombinasi?
+
+# 5. Matematika I
+
+Dokumen repo: [Rangkuman Matematika I](https://github.com/khairys/BelajarKompre/blob/main/RANGKUMAN_DAN_CONTOH_SOAL/01_Semester_1/Matematika_I/RANGKUMAN_MATERI.md)
+
+## Apa yang dipelajari?
+
+Matematika I berfokus pada kalkulus. Kamu mempelajari fungsi, perubahan nilai, laju perubahan, dan akumulasi.
+
+Secara sederhana, turunan menjelaskan bagaimana suatu nilai berubah, sedangkan integral menjelaskan akumulasi nilai dalam suatu rentang.
+
+### Urutan materi
+
+A. Bilangan real dan pertidaksamaan
+
+Kamu mulai dengan sifat bilangan real, interval, pertidaksamaan, dan nilai mutlak.
+
+Hal pentingnya adalah menentukan rentang nilai \(x\) yang memenuhi suatu kondisi, termasuk ketika ada pecahan aljabar atau nilai mutlak.
+
+B. Fungsi
+
+Fungsi menggambarkan hubungan antara input dan output.
+
+Kamu mempelajari domain, range, grafik fungsi, simetri, komposisi fungsi, serta karakteristik fungsi aljabar dan trigonometri yang diperlukan untuk kalkulus.
+
+C. Limit dan kekontinuan
+
+Limit membahas nilai yang didekati suatu fungsi ketika input mendekati titik tertentu.
+
+Contoh:
+
+\[ \lim_{x\to 2}(x+3)=5 \]
+
+Kamu belajar menghitung limit menggunakan manipulasi aljabar, mempelajari limit sepihak, serta memahami kapan fungsi kontinu dan kapan terdapat diskontinuitas.
+
+D. Turunan
+
+Turunan menyatakan laju perubahan sesaat suatu fungsi terhadap variabelnya.
+
+Contohnya:
+
+\[ f(x)=x^2 \quad\Rightarrow\quad f'(x)=2x \]
+
+Kamu mempelajari definisi turunan, aturan pangkat, aturan hasil kali dan hasil bagi, aturan rantai, serta turunan fungsi implisit.
+
+E. Aplikasi turunan
+
+Turunan digunakan untuk menyelesaikan persoalan nyata, bukan hanya manipulasi rumus.
+
+Topiknya meliputi:
+
+- Menentukan apakah fungsi naik atau turun.
+- Mencari nilai maksimum dan minimum.
+- Menganalisis kecekungan dan titik belok.
+- Menyelesaikan masalah optimasi, misalnya menentukan ukuran yang meminimalkan biaya.
+
+F. Integral
+
+Integral membahas antiturunan dan akumulasi.
+
+Kamu mempelajari integral fungsi aljabar dan transenden serta teknik penyelesaiannya, antara lain substitusi, integral parsial, pecahan parsial, dan substitusi trigonometri.
+
+G. Integral tentu dan Teorema Dasar Kalkulus
+
+Integral tentu menghitung akumulasi fungsi pada suatu interval.
+
+\[ \int_a^b f(x)\\,dx=F(b)-F(a) \]
+
+dengan \(F'(x)=f(x)\).
+
+Kamu belajar hubungan integral dan turunan, serta penggunaan integral untuk menghitung luas daerah di antara dua kurva dan volume benda putar.
+
+### Target setelah mempelajari Matematika I
+
+Kamu seharusnya mampu menyelesaikan limit, melakukan diferensiasi dan integrasi, menjelaskan makna geometris turunan dan integral, serta memilih metode yang sesuai untuk persoalan kalkulus.
+
+Pertanyaan penting: Apa perbedaan limit, turunan, dan integral? Bagaimana mencari titik maksimum atau minimum? Kapan menggunakan substitusi dan kapan menggunakan integral parsial?
+
+# 6. Bahasa Inggris
+
+Dokumen repo: [Rangkuman Bahasa Inggris](https://github.com/khairys/BelajarKompre/blob/main/RANGKUMAN_DAN_CONTOH_SOAL/01_Semester_1/Bahasa_Inggris/RANGKUMAN_MATERI.md)
+
+## Apa yang dipelajari?
+
+Bahasa Inggris di semester ini diarahkan pada kemampuan memahami bacaan akademik dan teknis, termasuk teks yang berkaitan dengan teknologi dan ilmu komputer.
+
+Tujuannya bukan hanya menghafal tata bahasa, tetapi juga memahami informasi dan menyampaikan penjelasan teknis secara tepat.
+
+### Urutan materi
+
+A. Stative verbs dan dynamic verbs
+
+Dynamic verbs menunjukkan tindakan atau proses, seperti run, write, dan process. Stative verbs menggambarkan keadaan atau persepsi, seperti know, believe, dan belong.
+
+Perbedaan ini memengaruhi penggunaan bentuk kalimat, terutama bentuk continuous.
+
+B. Tenses utama
+
+Kamu mempelajari fungsi waktu dalam kalimat.
+
+- Simple Present: fakta dan kebiasaan. “The system processes data.”
+- Simple Past: kejadian yang sudah selesai. “The system processed the data.”
+- Present Perfect: kejadian atau perkembangan yang memiliki hubungan dengan keadaan saat ini. “The system has processed the data.”
+
+C. Passive voice
+
+Kalimat pasif menekankan objek atau proses yang dikenai tindakan.
+
+Contoh:
+
+Active: “The program processes the data.”
+
+Passive: “The data is processed by the program.”
+
+Bentuk ini sering digunakan dalam penjelasan teknis, laporan eksperimen, dan dokumentasi.
+
+D. Conditional sentences
+
+Kalimat pengandaian digunakan untuk menjelaskan hubungan kondisi dan akibat.
+
+- Zero conditional: fakta umum.
+- First conditional: kemungkinan realistis di masa depan.
+- Second conditional: situasi hipotetis.
+- Third conditional: situasi hipotetis yang berkaitan dengan masa lalu.
+
+E. Relative clauses
+
+Relative clauses menambahkan informasi tentang orang, objek, atau konsep. Kamu perlu mengenali kata penghubung seperti who, which, that, dan whose serta perbedaan klausa pembatas dan klausa tambahan.
+
+F. Subject-verb agreement
+
+Subjek dan kata kerja harus cocok dalam jumlah dan bentuknya.
+
+Contoh:
+
+- “The algorithm works.”
+- “The algorithms work.”
+
+Materi ini juga mencakup ketepatan struktur kalimat dan pengenalan kesalahan gramatika.
+
+G. Membaca teks ilmiah dan teknis
+
+Pada bagian akhir, kamu menerapkan tata bahasa untuk memahami artikel tentang teknologi, membaca gagasan utama dan detail pendukung, menyimpulkan informasi, serta mengenali kesalahan penulisan.
+
+### Target setelah mempelajari Bahasa Inggris
+
+Kamu seharusnya mampu membaca penjelasan teknis sederhana, mengenali struktur kalimat, memahami informasi utama sebuah artikel, dan menjelaskan konsep Informatika dengan kalimat Inggris yang tepat.
+
+Pertanyaan penting: Kapan menggunakan passive voice? Apa perbedaan simple past dan present perfect? Bagaimana menemukan ide utama sebuah teks teknis?
+
+# 7. Pancasila dan Kewarganegaraan
+
+Dokumen repo: [Rangkuman Pancasila dan Kewarganegaraan](https://github.com/khairys/BelajarKompre/blob/main/RANGKUMAN_DAN_CONTOH_SOAL/01_Semester_1/Pancasila_dan_Kewarganegaraan/RANGKUMAN_MATERI.md)
+
+## Apa yang dipelajari?
+
+Mata kuliah ini membahas nilai dasar kehidupan berbangsa dan bernegara, termasuk tanggung jawab warga negara serta penerapan etika dalam perkembangan teknologi.
+
+Dalam repository, materinya menggabungkan tema Pendidikan Pancasila dan Pendidikan Kewarganegaraan.
+
+### Urutan materi
+
+A. Sejarah dan perumusan Pancasila
+
+Kamu mempelajari latar belakang historis lahirnya Pancasila, proses perumusan dasar negara, dan kedudukannya dalam kehidupan bangsa Indonesia.
+
+B. Pancasila sebagai sistem filsafat
+
+Pancasila dipelajari melalui dasar pemikiran tentang hakikat manusia, sumber pengetahuan mengenai nilai-nilai bangsa, serta tujuan dan makna nilai tersebut.
+
+Lima sila juga perlu dipahami sebagai kesatuan nilai yang saling berkaitan.
+
+C. Pancasila sebagai ideologi terbuka
+
+Kamu mempelajari Pancasila sebagai dasar yang tetap, tetapi nilai-nilainya dapat diterapkan untuk menghadapi perkembangan masyarakat dan perubahan zaman.
+
+D. Pancasila sebagai sistem etika dan dasar pengembangan ilmu pengetahuan
+
+Bagian ini membahas hubungan antara nilai moral dan kemajuan teknologi.
+
+Dalam Informatika, penerapannya dapat berupa pertanyaan tentang privasi data, keadilan algoritma, penyalahgunaan kecerdasan buatan, keamanan informasi, dan tanggung jawab pengembang perangkat lunak.
+
+E. Identitas nasional
+
+Kamu mempelajari unsur pembentuk identitas bangsa, seperti sejarah, bahasa, kebudayaan, pengalaman sosial, dan simbol kebangsaan.
+
+F. Negara, konstitusi, dan sistem hukum
+
+Kamu mempelajari unsur negara, fungsi konstitusi, serta kedudukan UUD 1945 sebagai hukum dasar negara.
+
+G. Demokrasi, HAM, dan negara hukum
+
+Materinya mencakup kedaulatan rakyat, demokrasi Pancasila, hak asasi manusia, kewajiban warga negara, dan prinsip bahwa penyelenggaraan negara harus berdasarkan hukum.
+
+H. Wawasan Nusantara dan Ketahanan Nasional
+
+Wawasan Nusantara memandang Indonesia sebagai satu kesatuan wilayah dan bangsa. Ketahanan nasional membahas kemampuan bangsa untuk mempertahankan keberlangsungan dan menghadapi berbagai ancaman serta tantangan.
+
+### Target setelah mempelajari mata kuliah ini
+
+Kamu seharusnya mampu menjelaskan kedudukan Pancasila, hubungan antara warga negara dan konstitusi, prinsip dasar demokrasi dan HAM, serta bagaimana nilai Pancasila digunakan untuk menilai dampak perkembangan teknologi.
+
+Pertanyaan penting: Apa fungsi Pancasila sebagai dasar negara? Bagaimana etika Pancasila diterapkan pada AI? Apa perbedaan hak dan kewajiban warga negara?
+
+# 8. Olah Raga
+
+Dokumen repo: [Rangkuman Olah Raga](https://github.com/khairys/BelajarKompre/blob/main/RANGKUMAN_DAN_CONTOH_SOAL/01_Semester_1/Olah_Raga/RANGKUMAN_MATERI.md)
+
+## Apa yang dipelajari?
+
+Mata kuliah ini merupakan bagian dari pengembangan kebugaran fisik dan kebiasaan hidup sehat. Berbeda dengan mata kuliah teknis, orientasinya lebih banyak pada aktivitas fisik dan praktik.
+
+Secara umum, tujuan pembelajarannya adalah:
+
+A. Kebugaran jasmani
+
+Memahami dan mengembangkan kemampuan tubuh untuk menjalankan aktivitas sehari-hari, termasuk daya tahan, kekuatan, dan kelenturan sesuai dengan kegiatan yang dilakukan.
+
+B. Aktivitas fisik yang teratur
+
+Membangun kebiasaan bergerak secara teratur dan memahami pentingnya menjaga kondisi tubuh selama menjalani kegiatan akademik.
+
+C. Disiplin dan kerja sama
+
+Aktivitas olahraga juga dapat melatih kedisiplinan, mengikuti aturan, menghargai orang lain, serta bekerja sama dalam aktivitas kelompok.
+
+### Target pembelajaran
+
+Memahami pentingnya kebugaran, menjaga kebiasaan hidup aktif, dan mengikuti kegiatan olahraga dengan disiplin. Dokumen repo untuk mata kuliah ini tidak memiliki arsip materi mentah yang tercatat, sehingga detail silabus dan bentuk penilaiannya perlu dicocokkan dengan ketentuan perkuliahanmu.
+
+# 9. Hubungan antara delapan mata kuliah
+
+Meskipun terlihat berbeda, materi semester 1 saling mendukung.
+
+Struktur Diskrit + Logika Informatika + Matematika I
+
+Fondasi penalaran dan matematika
+
+Dasar Pemrograman
+
+Mengubah masalah menjadi algoritma dan fungsi
+
+Dasar Sistem
+
+Memahami bagaimana logika dan data direpresentasikan secara digital
+
+Bahasa Inggris mendukung pembacaan dokumentasi teknis. Pancasila dan Kewarganegaraan membangun pemahaman tanggung jawab sosial dan etika. Olah Raga mendukung kebugaran dan aktivitas fisik.
+
+Contoh hubungan lintas mata kuliah: Struktur Diskrit membantumu memahami graf dan pohon, Dasar Pemrograman mengajarkan cara mengolah struktur tersebut dengan algoritma, Logika Informatika membantumu memeriksa kebenaran kondisi program, dan Dasar Sistem menjelaskan logika digital pada tingkat perangkat keras.
+
+Hubungan seperti ini sangat penting untuk ujian komprehensif karena penguji dapat meminta kamu menjelaskan tidak hanya definisi sebuah konsep, tetapi juga penggunaannya dan hubungannya dengan konsep lain.
+
+# 10. Apa yang harus dikuasai sebelum melanjutkan ke semester 2?
+
+Gunakan daftar periksa ini sebagai target belajar. Tandai suatu materi hanya setelah kamu benar-benar bisa menjelaskannya tanpa bergantung pada rangkuman.
+
+## Checklist penguasaan semester 1
+
+0/20
+
+Dasar Pemrograman
+
+Menjelaskan paradigma fungsional dan prosedural
+
+Menulis fungsi rekursif dengan basis dan rekurens
+
+Mengolah list, himpunan, dan pohon biner
+
+Dasar Sistem
+
+Mengonversi bilangan desimal dan biner
+
+Menggunakan gerbang logika dan tabel kebenaran
+
+Menyederhanakan Boolean dan membedakan rangkaian kombinasional/sekuensial
+
+Logika Informatika
+
+Menghitung tabel kebenaran dan mengenali tautologi
+
+Menerapkan aturan inferensi
+
+Memahami CNF/DNF serta kuantor FOL
+
+Struktur Diskrit
+
+Melakukan operasi himpunan dan memahami relasi/fungsi
+
+Membedakan permutasi dan kombinasi
+
+Memahami induksi, graf, pohon, relasi rekurens, dan modulo
+
+Matematika I
+
+Menghitung limit dan turunan
+
+Menyelesaikan persoalan maksimum/minimum
+
+Menghitung integral dasar dan memahami aplikasinya
+
+Bahasa Inggris
+
+Mengenali tenses, passive voice, dan conditional sentences
+
+Memahami ide utama teks teknis bahasa Inggris
+
+Pancasila dan Kewarganegaraan
+
+Menjelaskan kedudukan Pancasila dan konstitusi
+
+Menghubungkan demokrasi, HAM, dan etika teknologi
+
+Olah Raga
+
+Memahami pentingnya kebugaran dan aktivitas fisik teratur
+
+Reset checklist
+
+## Cara menggunakan rangkuman ini
+
+Saran saya, jangan menghafal seluruh isi sekaligus. Gunakan dokumen ini sebagai peta besar. Pelajari satu mata kuliah pada satu waktu, baca rangkuman asli di repo, kemudian kerjakan contoh soal tanpa melihat pembahasan.
+
+Untuk mata kuliah teknis, prioritaskan latihan menyelesaikan masalah dan menjelaskan setiap langkah. Untuk mata kuliah konseptual, prioritaskan pemahaman definisi, alasan, contoh penerapan, dan hubungan antarkonsep.
+
+Kita mulai dari Dasar Pemrograman terlebih dahulu, karena materi ini membantu membangun cara berpikir algoritmik yang akan digunakan kembali dalam banyak mata kuliah berikutnya. Setelah peta semester 1 ini dipahami, langkah selanjutnya adalah membedah Dasar Pemrograman secara lebih mendalam, dari tipe data sampai rekursi dan pohon biner, disertai contoh dan latihan soal.

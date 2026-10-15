@@ -73,7 +73,7 @@ C. Tipe data bentukan atau Abstract Data Type (ADT)
 
 Data kompleks dapat dibentuk dari beberapa nilai sederhana.
 
-Misalnya, objek `Point` menyimpan koordinat \\(x\\) dan \\(y\\). Kamu memerlukan konstruktor untuk membentuk objek dan selektor untuk mengambil komponennya.
+Misalnya, objek `Point` menyimpan koordinat \(x\) dan \(y\). Kamu memerlukan konstruktor untuk membentuk objek dan selektor untuk mengambil komponennya.
 
 Intinya, kamu belajar mengorganisasi data berdasarkan makna dan operasi yang dapat dilakukan terhadapnya.
 
@@ -89,9 +89,9 @@ Rekursi terjadi ketika sebuah fungsi memanggil dirinya sendiri untuk menyelesaik
 
 Contohnya, faktorial:
 
-\\[ n!=n\times(n-1)! \\]
+\[ n!=n\times(n-1)! \]
 
-dengan kondisi dasar \\(0!=1\\).
+dengan kondisi dasar \(0!=1\).
 
 Ada dua komponen utama yang wajib dipahami:
 
@@ -141,7 +141,7 @@ Komputer menggunakan biner, yaitu bilangan berbasis 2. Selain itu, kamu perlu me
 
 Contoh:
 
-\\[ 13\_{10}=1101_2 \\]
+\[ 13_{10}=1101_2 \]
 
 Kamu belajar konversi antarbasis, operasi aritmetika biner, dan representasi bilangan bertanda.
 
@@ -224,12 +224,12 @@ Proposisi adalah pernyataan yang bernilai benar atau salah.
 
 Misalnya:
 
-- \\(p\\): Komputer sedang menyala.
-- \\(q\\): Sistem operasi sedang berjalan.
+- \(p\): Komputer sedang menyala.
+- \(q\): Sistem operasi sedang berjalan.
 
 Dari dua proposisi tersebut, kamu mempelajari operator:
 
-\\[ \neg p,\quad p\land q,\quad p\lor q,\quad p\to q \\]
+\[ \neg p,\quad p\land q,\quad p\lor q,\quad p\to q \]
 
 Artinya secara berurutan: NOT, AND, OR, dan implikasi.
 
@@ -241,7 +241,7 @@ Dua ekspresi disebut ekuivalen secara logis apabila memiliki nilai kebenaran yan
 
 Contoh hukum De Morgan:
 
-\\[ \neg(p\land q)\equiv\neg p\lor\neg q \\]
+\[ \neg(p\land q)\equiv\neg p\lor\neg q \]
 
 Kemampuan ini penting ketika menyederhanakan kondisi program atau membuktikan suatu pernyataan.
 
@@ -257,7 +257,7 @@ Contoh Modus Ponens:
 
 Dalam logika simbolik:
 
-\\[ p\to q,\ p\ \therefore q \\]
+\[ p\to q,\ p\ \therefore q \]
 
 Kamu mempelajari aturan inferensi lainnya seperti Modus Tollens dan silogisme hipotetis.
 
@@ -274,7 +274,7 @@ Ekspresi logika dapat diubah ke format standar.
 - CNF: konjungsi dari klausa-klausa disjungtif.
 - DNF: disjungsi dari bagian-bagian konjungtif.
 
-Contohnya, \\((p\lor q)\land r\\) merupakan CNF, sedangkan \\((p\land q)\lor r\\) merupakan DNF.
+Contohnya, \((p\lor q)\land r\) merupakan CNF, sedangkan \((p\land q)\lor r\) merupakan DNF.
 
 Kamu perlu memahami bagaimana mengubah ekspresi dari satu bentuk ke bentuk lainnya.
 
@@ -291,13 +291,13 @@ Logika berkembang dari pernyataan sederhana menjadi pernyataan mengenai objek, s
 Kamu mempelajari:
 
 - Predikat, seperti `Mahasiswa(x)`.
-- Kuantor universal \\(\forall\\), yang berarti untuk semua.
-- Kuantor eksistensial \\(\exists\\), yang berarti terdapat setidaknya satu.
+- Kuantor universal \(\forall\), yang berarti untuk semua.
+- Kuantor eksistensial \(\exists\), yang berarti terdapat setidaknya satu.
 - Negasi kuantor, substitusi, unifikasi, dan resolusi FOL.
 
 Contoh:
 
-\\[ \forall x,\ Mahasiswa(x)\to Belajar(x) \\]
+\[ \forall x,\ Mahasiswa(x)\to Belajar(x) \]
 
 Artinya, setiap individu yang merupakan mahasiswa memenuhi pernyataan bahwa ia belajar.
 
@@ -321,11 +321,11 @@ A. Himpunan
 
 Himpunan adalah kumpulan objek yang terdefinisi dengan jelas.
 
-Jika \\(A=\\{1,2,3\\}\\) dan \\(B=\\{3,4,5\\}\\), maka:
+Jika \(A=\{1,2,3\}\) dan \(B=\{3,4,5\}\), maka:
 
-\\[ A\cup B=\\{1,2,3,4,5\\} \\]
+\[ A\cup B=\{1,2,3,4,5\} \]
 
-\\[ A\cap B=\\{3\\} \\]
+\[ A\cap B=\{3\} \]
 
 Kamu juga mempelajari selisih himpunan, komplemen, subset, dan himpunan kuasa.
 
@@ -360,8 +360,8 @@ Induksi digunakan untuk membuktikan pernyataan yang berlaku untuk bilangan bulat
 Prosesnya memiliki tiga bagian:
 
 1. Membuktikan kasus dasar.
-2. Mengasumsikan pernyataan benar untuk \\(k\\).
-3. Membuktikan bahwa pernyataan juga benar untuk \\(k+1\\).
+2. Mengasumsikan pernyataan benar untuk \(k\).
+3. Membuktikan bahwa pernyataan juga benar untuk \(k+1\).
 
 Induksi banyak digunakan untuk membuktikan rumus penjumlahan, sifat struktur data, dan kebenaran algoritma.
 
@@ -374,11 +374,11 @@ Kamu harus membedakan:
 - Permutasi: urutan diperhatikan.
 - Kombinasi: urutan tidak diperhatikan.
 
-Untuk \\(n\\) objek yang dipilih \\(r\\) objek sekaligus tanpa pengulangan:
+Untuk \(n\) objek yang dipilih \(r\) objek sekaligus tanpa pengulangan:
 
-\\[ P(n,r)=\frac{n!}{(n-r)!} \\]
+\[ P(n,r)=\frac{n!}{(n-r)!} \]
 
-\\[ C(n,r)=\frac{n!}{r!(n-r)!} \\]
+\[ C(n,r)=\frac{n!}{r!(n-r)!} \]
 
 Kombinatorika digunakan dalam analisis kompleksitas, probabilitas diskrit, dan perhitungan kemungkinan konfigurasi.
 
@@ -388,7 +388,7 @@ Relasi rekurens mendefinisikan suatu urutan berdasarkan nilai sebelumnya.
 
 Contohnya, barisan Fibonacci:
 
-\\[ F_n=F\_{n-1}+F\_{n-2} \\]
+\[ F_n=F_{n-1}+F_{n-2} \]
 
 dengan nilai awal yang ditentukan.
 
@@ -400,7 +400,7 @@ Materinya meliputi keterbagian, FPB, algoritma Euclid, kongruensi, invers modulo
 
 Contoh:
 
-\\[ 17\bmod 5=2 \\]
+\[ 17\bmod 5=2 \]
 
 Artinya, sisa pembagian 17 dengan 5 adalah 2.
 
@@ -422,7 +422,7 @@ RSA menggunakan dua kunci yang berkaitan secara matematis: kunci publik untuk en
 
 Kamu seharusnya dapat melakukan operasi himpunan, memeriksa sifat relasi, membedakan permutasi dan kombinasi, membuktikan pernyataan menggunakan induksi, menyelesaikan soal graf dan pohon, serta memahami mengapa aritmetika modular menjadi dasar kriptografi.
 
-Pertanyaan penting: Apa perbedaan relasi dan fungsi? Mengapa jumlah sisi pohon dengan \\(n\\) simpul adalah \\(n-1\\)? Kapan menggunakan permutasi dan kapan menggunakan kombinasi?
+Pertanyaan penting: Apa perbedaan relasi dan fungsi? Mengapa jumlah sisi pohon dengan \(n\) simpul adalah \(n-1\)? Kapan menggunakan permutasi dan kapan menggunakan kombinasi?
 
 # 5. Matematika I
 
@@ -440,7 +440,7 @@ A. Bilangan real dan pertidaksamaan
 
 Kamu mulai dengan sifat bilangan real, interval, pertidaksamaan, dan nilai mutlak.
 
-Hal pentingnya adalah menentukan rentang nilai \\(x\\) yang memenuhi suatu kondisi, termasuk ketika ada pecahan aljabar atau nilai mutlak.
+Hal pentingnya adalah menentukan rentang nilai \(x\) yang memenuhi suatu kondisi, termasuk ketika ada pecahan aljabar atau nilai mutlak.
 
 B. Fungsi
 
@@ -454,7 +454,7 @@ Limit membahas nilai yang didekati suatu fungsi ketika input mendekati titik ter
 
 Contoh:
 
-\\[ \lim\_{x\to 2}(x+3)=5 \\]
+\[ \lim_{x\to 2}(x+3)=5 \]
 
 Kamu belajar menghitung limit menggunakan manipulasi aljabar, mempelajari limit sepihak, serta memahami kapan fungsi kontinu dan kapan terdapat diskontinuitas.
 
@@ -464,7 +464,7 @@ Turunan menyatakan laju perubahan sesaat suatu fungsi terhadap variabelnya.
 
 Contohnya:
 
-\\[ f(x)=x^2 \quad\Rightarrow\quad f'(x)=2x \\]
+\[ f(x)=x^2 \quad\Rightarrow\quad f'(x)=2x \]
 
 Kamu mempelajari definisi turunan, aturan pangkat, aturan hasil kali dan hasil bagi, aturan rantai, serta turunan fungsi implisit.
 
@@ -489,9 +489,9 @@ G. Integral tentu dan Teorema Dasar Kalkulus
 
 Integral tentu menghitung akumulasi fungsi pada suatu interval.
 
-\\[ \int_a^b f(x)\\,dx=F(b)-F(a) \\]
+\[ \int_a^b f(x)\\,dx=F(b)-F(a) \]
 
-dengan \\(F'(x)=f(x)\\).
+dengan \(F'(x)=f(x)\).
 
 Kamu belajar hubungan integral dan turunan, serta penggunaan integral untuk menghitung luas daerah di antara dua kurva dan volume benda putar.
 

@@ -1,12 +1,22 @@
 # BelajarKompre - S1 Informatika Universitas Diponegoro
 > Repositori pengetahuan komprehensif 44 mata kuliah wajib S1 Informatika Universitas Diponegoro (Kurikulum 2020). Format Markdown murni siap cerna untuk LLM dan AI Agents.
 
-## File Struktur Utama
+## Berkas Acuan Sintesis Semester (Macro Level)
+- semester1.md: Sintesis 8 matkul Semester 1 (Dasar Pemrograman, Dasar Sistem, Logika, Diskrit, Mat 1, B.Inggris, PKn, Olahraga)
+- semester2.md: Sintesis 7 matkul Semester 2 (Alpro C, Aljabar Linier, B.Indonesia, IoT, Mat 2, OARK, Agama)
+- semester3.md: Sintesis 6 matkul Semester 3 (Basis Data, IMK, Metode Numerik, Sistem Operasi, Statistika, Struktur Data)
+- semester4.md: Sintesis 6 matkul Semester 4 (GKV, Jaringan Komputer, MBD, PBO Java, RPL, Sistem Cerdas)
+- semester5.md: Sintesis 7 matkul Semester 5 (KJI, Kewirausahaan, KTP, Pembelajaran Mesin, PBP, Proyek PL, SI)
+- semester6.md: Sintesis 5 matkul Semester 6 (ASA, Manajemen Proyek, Etika Profesi, PKL, Uji Perangkat Lunak)
+- semester7.md: Sintesis 3 matkul Semester 7 (Metodologi Riset, Penambangan Data, Teori Bahasa & Otomata)
+- semester8.md: Sintesis 2 matkul Semester 8 (Kuliah Kerja Nyata, Tugas Akhir / Skripsi)
+
+## Panduan & Inventaris
 - README.md: Dokumentasi umum proyek dan arsitektur repositori
 - INVENTARIS_BERKAS.md: Rekapitulasi status 88 berkas kajian dan 1.436 berkas arsip mentah
 - AGENT_GUIDE.md: Panduan instruksi sistem bagi AI Agent untuk membaca dan menavigasi berkas
 
-## Repositori Kajian (RANGKUMAN_DAN_CONTOH_SOAL)
+## Repositori Kajian Per Mata Kuliah (RANGKUMAN_DAN_CONTOH_SOAL)
 Setiap folder mata kuliah berisi:
 - RANGKUMAN_MATERI.md: Peta konsep 14 pertemuan, diagram Mermaid, rumus matematis
 - CONTOH_SOAL_DAN_PEMBAHASAN.md: Bank soal riil UTS/UAS, step-by-step solutions, exam traps, oral defense questions
