@@ -641,26 +641,43 @@ html_content = f"""<!DOCTYPE html>
       const bannerDesc = document.getElementById('semesterGptDesc');
       const bannerBtn = document.getElementById('semesterGptBtn');
 
-      if (sem === '1' || sem === 'all') {{
+      if (sem === '1') {{
         bannerTitle.textContent = 'Rangkuman Semester 1 (GPT / AI Overview)';
         bannerDesc.textContent = 'Penjelasan terpadu 8 mata kuliah Semester 1 sekaligus: konsep inti, diagram arsitektur, rumus KaTeX, dan target ujian komprehensif.';
         bannerBtn.setAttribute('onclick', 'openSemesterSummary(1)');
-        bannerBtn.innerHTML = '<span>📖</span> Buka Rangkuman GPT';
+        bannerBtn.innerHTML = '<span>📖</span> Buka Rangkuman Semester 1';
+      }} else if (sem === '2') {{
+        bannerTitle.textContent = 'Rangkuman Semester 2 (GPT / AI Overview)';
+        bannerDesc.textContent = 'Penjelasan terpadu 7 mata kuliah Semester 2 sekaligus: Pemrograman C, Aljabar Linier, Arsitektur CPU, IoT, dan Kalkulus Multivariabel.';
+        bannerBtn.setAttribute('onclick', 'openSemesterSummary(2)');
+        bannerBtn.innerHTML = '<span>📖</span> Buka Rangkuman Semester 2';
+      }} else if (sem === 'all') {{
+        bannerTitle.textContent = 'Rangkuman Semester 1 & 2 (GPT / AI Overview)';
+        bannerDesc.textContent = 'Pilih filter semester di atas untuk membuka kajian sintesis lengkap per semester yang siap dibaca.';
+        bannerBtn.setAttribute('onclick', 'openSemesterSummary(1)');
+        bannerBtn.innerHTML = '<span>📖</span> Buka Rangkuman Semester 1';
       }} else {{
         bannerTitle.textContent = `Rangkuman Semester ${{sem}} (GPT / AI Overview)`;
-        bannerDesc.textContent = `Sintesis komprehensif khusus Semester ${{sem}}. Anda dapat meninjau kajian per mata kuliah di bawah atau membuka rangkuman semester.`;
+        bannerDesc.textContent = `Sintesis komprehensif khusus Semester ${{sem}}. Anda dapat meninjau kajian per mata kuliah di bawah.`;
         bannerBtn.setAttribute('onclick', `openSemesterSummary(${{sem}})`);
         bannerBtn.innerHTML = '<span>📖</span> Buka Rangkuman GPT';
       }}
     }}
 
     function openSemesterSummary(semNum) {{
-      if (semNum === 1 || semNum === '1' || semNum === 'all') {{
+      if (semNum === 1 || semNum === '1') {{
         openMarkdownViewer(
           'RANGKUMAN_DAN_CONTOH_SOAL/01_Semester_1/RANGKUMAN_SEMESTER_1.md',
           '🎓 Rangkuman Komprehensif: Semester 1 (Sintesis GPT)',
           'Semester 1 • 8 Mata Kuliah Wajib Lengkap & Pembahasan Komprehensif',
           'https://github.com/khairys/BelajarKompre/blob/main/RANGKUMAN_DAN_CONTOH_SOAL/01_Semester_1/RANGKUMAN_SEMESTER_1.md'
+        );
+      }} else if (semNum === 2 || semNum === '2') {{
+        openMarkdownViewer(
+          'RANGKUMAN_DAN_CONTOH_SOAL/02_Semester_2/RANGKUMAN_SEMESTER_2.md',
+          '🎓 Rangkuman Komprehensif: Semester 2 (Sintesis GPT)',
+          'Semester 2 • 7 Mata Kuliah Wajib Lengkap & Pembahasan Komprehensif',
+          'https://github.com/khairys/BelajarKompre/blob/main/RANGKUMAN_DAN_CONTOH_SOAL/02_Semester_2/RANGKUMAN_SEMESTER_2.md'
         );
       }} else {{
         alert(`Rangkuman sintesis satu semester untuk Semester ${{semNum}} sedang disiapkan. Anda dapat membaca rangkuman per mata kuliah pada kartu di bawah.`);
