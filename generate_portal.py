@@ -140,6 +140,31 @@ SEMESTER_METADATA = {
     }
 }
 
+# --- BUILD EMBEDDED CONTENT REGISTRY (100% Anti-CORS & Instant Load) ---
+content_registry = {}
+
+# 1. Semesters (semester1.md s.d. semester8.md)
+for i in range(1, 9):
+    fn = os.path.join(base_dir, f"semester{i}.md")
+    if os.path.exists(fn):
+        with open(fn, "r", encoding="utf-8") as f:
+            text = f.read()
+            content_registry[f"semester{i}.md"] = text
+            content_registry[f"RANGKUMAN_DAN_CONTOH_SOAL/{i:02d}_Semester_{i}/RANGKUMAN_SEMESTER_{i}.md"] = text
+
+# 2. RANGKUMAN_DAN_CONTOH_SOAL (all markdown files)
+for root, dirs, files in os.walk(rangkuman_base):
+    for f in files:
+        if f.endswith(".md"):
+            fp = os.path.join(root, f)
+            rel = os.path.relpath(fp, base_dir).replace("\\", "/")
+            with open(fp, "r", encoding="utf-8") as mf:
+                content_registry[rel] = mf.read()
+
+registry_json = json.dumps(content_registry, ensure_ascii=False)
+# Secure script tags from prematurely closing HTML script tag
+registry_json = registry_json.replace("</script", "<\\/script").replace("</Script", "<\\/Script>")
+
 data_tree = []
 total_raw_materi = 0
 total_raw_soal = 0
@@ -210,7 +235,6 @@ total_rk_files = total_rk_materi + total_rk_soal
 
 sorted_topics = sorted(list(all_topics))
 
-# Read HTML template pieces or construct complete HTML
 html_content = f"""<!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
 <head>
@@ -604,7 +628,28 @@ html_content = f"""<!DOCTYPE html>
 
     const dataTree = {json.dumps(data_tree, ensure_ascii=False)};
     const semesterMeta = {json.dumps(SEMESTER_METADATA, ensure_ascii=False)};
+    const contentRegistry = {registry_json};
     
+    // Helper to retrieve markdown content from embedded registry (Anti-CORS / 0ms instant)
+    function getContentFromRegistry(url, backupUrl) {{
+      if (!url) return null;
+      if (contentRegistry[url]) return contentRegistry[url];
+      if (backupUrl && contentRegistry[backupUrl]) return contentRegistry[backupUrl];
+      
+      const normUrl = url.replace(/\\\\/g, '/');
+      if (contentRegistry[normUrl]) return contentRegistry[normUrl];
+      
+      const filename = normUrl.split('/').pop();
+      if (contentRegistry[filename]) return contentRegistry[filename];
+      
+      for (const key in contentRegistry) {{
+        if (key.endsWith(normUrl) || key.endsWith(filename)) {{
+          return contentRegistry[key];
+        }}
+      }}
+      return null;
+    }}
+
     // Flatten subjects
     let allSubjects = [];
     dataTree.forEach(sem => {{
@@ -934,7 +979,7 @@ html_content = f"""<!DOCTYPE html>
       return html;
     }}
 
-    // Markdown Modal Viewer
+    // Markdown Modal Viewer (Instant Embedded + Fallback Fetch)
     const modal = document.getElementById('markdownModal');
     const modalDialog = document.getElementById('modalDialog');
     const modalTitle = document.getElementById('modalTitle');
@@ -949,29 +994,33 @@ html_content = f"""<!DOCTYPE html>
       modalGithubLink.href = githubUrl || '#';
       modalToc.classList.add('hidden');
       modalToc.innerHTML = '';
-      
-      modalBody.innerHTML = `
-        <div class="py-24 text-center text-slate-400 animate-pulse">
-          <div class="text-4xl mb-3">⏳</div>
-          <div class="text-sm font-semibold text-slate-300">Memuat berkas kajian & mem-parsing formula KaTeX...</div>
-          <div class="text-xs text-slate-500 mt-1">Menyiapkan rumus matematika, diagram, dan syntax code</div>
-        </div>
-      `;
       modal.classList.remove('hidden');
       document.body.style.overflow = 'hidden';
 
-      try {{
-        let response = await fetch(url);
-        if (!response.ok && backupUrl) {{
-          response = await fetch(backupUrl);
+      // 1. Get markdown from embedded registry (Instant & 100% CORS-proof!)
+      let markdownText = getContentFromRegistry(url, backupUrl);
+
+      // 2. Fallback to fetch only if not embedded (for external/new files)
+      if (!markdownText) {{
+        try {{
+          let response = await fetch(url);
+          if (!response.ok && backupUrl) {{
+            response = await fetch(backupUrl);
+          }}
+          if (response.ok) {{
+            markdownText = await response.text();
+          }}
+        }} catch (fetchErr) {{
+          console.warn("Fetch fallback failed:", fetchErr);
         }}
-        if (!response.ok) throw new Error('Gagal memuat berkas lokal');
-        const markdownText = await response.text();
-        
-        // 1. Render Markdown with Bulletproof KaTeX
+      }}
+
+      // 3. Render directly if markdown text is available
+      if (markdownText) {{
+        // Render Markdown with Bulletproof KaTeX
         modalBody.innerHTML = renderMarkdownContent(markdownText);
         
-        // 2. Render Mermaid Diagrams
+        // Render Mermaid Diagrams
         const mermaidNodes = [];
         modalBody.querySelectorAll('pre code.language-mermaid, pre code.lang-mermaid').forEach((codeEl) => {{
           const pre = codeEl.closest('pre');
@@ -991,12 +1040,12 @@ html_content = f"""<!DOCTYPE html>
           }}
         }}
         
-        // 3. Highlight Code Blocks
+        // Highlight Code Blocks
         modalBody.querySelectorAll('pre code:not(.language-mermaid)').forEach((block) => {{
           hljs.highlightElement(block);
         }});
         
-        // 4. Build Table of Contents Pills
+        // Build Table of Contents Pills
         const headings = modalBody.querySelectorAll('h1, h2, h3');
         if (headings.length > 1) {{
           modalToc.innerHTML = '<span class="text-slate-400 font-semibold text-[11px] shrink-0 mr-1">Lompat ke:</span>';
@@ -1020,21 +1069,17 @@ html_content = f"""<!DOCTYPE html>
         }}
         
         modalBody.scrollTop = 0;
-      }} catch (err) {{
-        console.error("Fetch error:", err);
+      }} else {{
         modalBody.innerHTML = `
           <div class="py-16 px-4 text-center max-w-md mx-auto">
             <div class="text-5xl mb-4">📄</div>
-            <h4 class="font-bold text-lg text-white">Pratinjau Langsung Terkendala</h4>
+            <h4 class="font-bold text-lg text-white">Berkas Kajian Belum Tersedia</h4>
             <p class="text-xs text-slate-400 mt-2 leading-relaxed">
-              Jika membuka langsung via protokol lokal (<code class="text-rose-400 font-mono">file:///</code>), peramban membatasi permintaan fetch berkas karena kebijakan keamanan CORS.
+              Berkas kajian sedang disinkronkan ke dalam repositori lokal.
             </p>
             <div class="mt-6 flex flex-col gap-2.5">
               <a href="${{githubUrl}}" target="_blank" class="px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-lg shadow-indigo-600/20 transition">
                 🌐 Buka di GitHub (Tampilan Lengkap)
-              </a>
-              <a href="${{url}}" target="_blank" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium border border-slate-700 transition">
-                📥 Buka Berkas Markdown Asli
               </a>
             </div>
           </div>
@@ -1084,4 +1129,4 @@ out_html = os.path.join(base_dir, "index.html")
 with open(out_html, "w", encoding="utf-8") as f:
     f.write(html_content)
 
-print(f"Generated {out_html} successfully!")
+print(f"Generated {out_html} successfully ({len(html_content):,} bytes)!")
