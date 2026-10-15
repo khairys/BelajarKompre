@@ -120,9 +120,14 @@
         </div>
       </div>
       
-      <div class="flex items-center gap-3">
+      <div class="flex items-center gap-2.5 sm:gap-3">
+        <button onclick="openSemesterSummary(1)"
+                class="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-300 transition shadow-sm"
+                title="Buka rangkuman penjelasan komprehensif 1 semester">
+          <span>✨</span> <span class="hidden sm:inline">Rangkuman</span> Semester (GPT)
+        </button>
         <a href="https://github.com/khairys/BelajarKompre/blob/main/llms.txt" target="_blank"
-           class="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700/80 text-slate-300 hover:text-white transition">
+           class="hidden md:inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700/80 text-slate-300 hover:text-white transition">
           <span>🤖</span> llms.txt (AI)
         </a>
         <a href="https://github.com/khairys/BelajarKompre" target="_blank"
@@ -231,6 +236,25 @@
           Semua Topik
         </button>
         <button data-topic="Basis Data & RPL" class="topic-btn px-3 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-400 border border-slate-800/80 whitespace-nowrap font-medium transition">Basis Data & RPL</button> <button data-topic="Fondasi & Sistem" class="topic-btn px-3 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-400 border border-slate-800/80 whitespace-nowrap font-medium transition">Fondasi & Sistem</button> <button data-topic="Jaringan & Keamanan" class="topic-btn px-3 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-400 border border-slate-800/80 whitespace-nowrap font-medium transition">Jaringan & Keamanan</button> <button data-topic="Kecerdasan Buatan (AI)" class="topic-btn px-3 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-400 border border-slate-800/80 whitespace-nowrap font-medium transition">Kecerdasan Buatan (AI)</button> <button data-topic="Kulminasi & Lapangan" class="topic-btn px-3 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-400 border border-slate-800/80 whitespace-nowrap font-medium transition">Kulminasi & Lapangan</button> <button data-topic="Matematika & Logika" class="topic-btn px-3 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-400 border border-slate-800/80 whitespace-nowrap font-medium transition">Matematika & Logika</button> <button data-topic="Pemrograman & Algoritma" class="topic-btn px-3 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-400 border border-slate-800/80 whitespace-nowrap font-medium transition">Pemrograman & Algoritma</button> <button data-topic="Pengembangan Diri & Etika" class="topic-btn px-3 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-400 border border-slate-800/80 whitespace-nowrap font-medium transition">Pengembangan Diri & Etika</button> <button data-topic="Riset & Karya Ilmiah" class="topic-btn px-3 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-400 border border-slate-800/80 whitespace-nowrap font-medium transition">Riset & Karya Ilmiah</button> <button data-topic="Sistem & Hardware" class="topic-btn px-3 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-400 border border-slate-800/80 whitespace-nowrap font-medium transition">Sistem & Hardware</button> <button data-topic="Teori Komputasi" class="topic-btn px-3 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-400 border border-slate-800/80 whitespace-nowrap font-medium transition">Teori Komputasi</button> <button data-topic="Umum" class="topic-btn px-3 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-400 border border-slate-800/80 whitespace-nowrap font-medium transition">Umum</button>
+      </div>
+
+      <!-- Featured Semester GPT Banner -->
+      <div id="semesterGptBanner" class="mt-4 p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-indigo-950/70 via-slate-900/90 to-purple-950/70 border border-indigo-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-4 backdrop-blur-md shadow-lg shadow-indigo-500/5">
+        <div class="flex items-start sm:items-center gap-3.5">
+          <div class="w-10 h-10 rounded-xl bg-indigo-500/20 border border-indigo-500/40 flex items-center justify-center text-xl shrink-0">
+            ✨
+          </div>
+          <div>
+            <div class="flex flex-wrap items-center gap-2">
+              <h3 id="semesterGptTitle" class="font-bold text-sm sm:text-base text-white">Rangkuman Semester 1 (GPT / AI Overview)</h3>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-300 uppercase tracking-wider">Sintesis 1 Semester</span>
+            </div>
+            <p id="semesterGptDesc" class="text-xs text-slate-400 mt-0.5">Penjelasan terpadu 8 mata kuliah Semester 1 sekaligus: konsep inti, diagram arsitektur, rumus KaTeX, dan target ujian komprehensif.</p>
+          </div>
+        </div>
+        <button id="semesterGptBtn" onclick="openSemesterSummary(1)" class="shrink-0 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs transition shadow-md shadow-indigo-600/25 flex items-center justify-center gap-2 active:scale-95">
+          <span>📖</span> Buka Rangkuman GPT
+        </button>
       </div>
     </div>
   </section>
@@ -470,9 +494,41 @@
         btn.classList.remove('bg-slate-900', 'text-slate-300');
         btn.classList.add('bg-indigo-600', 'text-white');
         currentSemester = btn.getAttribute('data-sem');
+        updateSemesterGptBanner(currentSemester);
         renderCourses();
       });
     });
+
+    function updateSemesterGptBanner(sem) {
+      const bannerTitle = document.getElementById('semesterGptTitle');
+      const bannerDesc = document.getElementById('semesterGptDesc');
+      const bannerBtn = document.getElementById('semesterGptBtn');
+
+      if (sem === '1' || sem === 'all') {
+        bannerTitle.textContent = 'Rangkuman Semester 1 (GPT / AI Overview)';
+        bannerDesc.textContent = 'Penjelasan terpadu 8 mata kuliah Semester 1 sekaligus: konsep inti, diagram arsitektur, rumus KaTeX, dan target ujian komprehensif.';
+        bannerBtn.setAttribute('onclick', 'openSemesterSummary(1)');
+        bannerBtn.innerHTML = '<span>📖</span> Buka Rangkuman GPT';
+      } else {
+        bannerTitle.textContent = `Rangkuman Semester ${sem} (GPT / AI Overview)`;
+        bannerDesc.textContent = `Sintesis komprehensif khusus Semester ${sem}. Anda dapat meninjau kajian per mata kuliah di bawah atau membuka rangkuman semester.`;
+        bannerBtn.setAttribute('onclick', `openSemesterSummary(${sem})`);
+        bannerBtn.innerHTML = '<span>📖</span> Buka Rangkuman GPT';
+      }
+    }
+
+    function openSemesterSummary(semNum) {
+      if (semNum === 1 || semNum === '1' || semNum === 'all') {
+        openMarkdownViewer(
+          'RANGKUMAN_DAN_CONTOH_SOAL/01_Semester_1/RANGKUMAN_SEMESTER_1.md',
+          '🎓 Rangkuman Komprehensif: Semester 1 (Sintesis GPT)',
+          'Semester 1 • 8 Mata Kuliah Wajib Lengkap & Pembahasan Komprehensif',
+          'https://github.com/khairys/BelajarKompre/blob/main/RANGKUMAN_DAN_CONTOH_SOAL/01_Semester_1/RANGKUMAN_SEMESTER_1.md'
+        );
+      } else {
+        alert(`Rangkuman sintesis satu semester untuk Semester ${semNum} sedang disiapkan. Anda dapat membaca rangkuman per mata kuliah pada kartu di bawah.`);
+      }
+    }
 
     document.querySelectorAll('.topic-btn').forEach(btn => {
       btn.addEventListener('click', () => {
