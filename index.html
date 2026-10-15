@@ -382,9 +382,10 @@
             <span class="hidden md:inline">GitHub</span>
           </a>
           
-          <!-- Close Button -->
-          <button onclick="closeModal()" class="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition" title="Tutup (Esc)">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          <!-- Close Button (X & Cancel) -->
+          <button onclick="closeModal()" class="px-2.5 py-1.5 rounded-lg bg-rose-500/15 hover:bg-rose-500/25 border border-rose-500/30 text-rose-300 hover:text-white text-xs font-semibold transition flex items-center gap-1.5 shadow-sm active:scale-95" title="Tutup Jendela (Esc)">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
+            <span class="hidden sm:inline">Tutup</span>
           </button>
         </div>
       </div>
@@ -397,6 +398,18 @@
       <!-- Modal Body (Rendered Markdown Container) -->
       <div id="modalBody" class="p-6 sm:p-10 overflow-y-auto markdown-body text-slate-200">
         <!-- Markdown injected here -->
+      </div>
+
+      <!-- Modal Bottom Bar (Fixed Action Bar) -->
+      <div class="px-5 py-3 border-t border-slate-800/90 bg-slate-900/95 flex items-center justify-between text-xs shrink-0">
+        <div class="flex items-center gap-2 text-slate-400 text-[11px]">
+          <span class="inline-block w-2 h-2 rounded-full bg-emerald-400"></span>
+          <span>Modal terkunci: klik di luar layar tidak menutup modal agar posisi membaca tidak hilang.</span>
+        </div>
+        <button onclick="closeModal()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-rose-600/30 hover:border-rose-500/50 border border-slate-700 text-slate-200 hover:text-white font-semibold text-xs transition flex items-center gap-2 shadow-sm active:scale-95">
+          <svg class="w-4 h-4 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
+          <span>Tutup Rangkuman</span>
+        </button>
       </div>
     </div>
   </div>
@@ -924,11 +937,8 @@
       });
     }
 
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        closeModal();
-      }
-    });
+    // Modal backdrop click is deliberately ignored so user reading flow is never interrupted.
+    // Modal only closes via explicit close/cancel button or Escape key.
 
     // Initial render
     renderCourses();
