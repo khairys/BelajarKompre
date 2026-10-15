@@ -1,0 +1,28 @@
+# Berkas Mentah Biner DMW di Root (Slide Dosen, Modul, ZIP, PDF Besar)
+# Gunakan leading slash '/' agar hanya mengabaikan folder mentah di root,
+# BUKAN folder RANGKUMAN_DAN_CONTOH_SOAL/
+/01_Semester_1/
+/02_Semester_2/
+/03_Semester_3/
+/04_Semester_4/
+/05_Semester_5/
+/06_Semester_6/
+/07_Semester_7/
+/08_Semester_8/
+
+# Berkas PDF Kurikulum Sumber di root
+*.pdf
+
+# Python Cache & Lingkungan Virtual
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.venv/
+env/
+
+# OS / Editor Artifacts
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

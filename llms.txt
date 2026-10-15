@@ -1,0 +1,72 @@
+# BelajarKompre - S1 Informatika Universitas Diponegoro
+> Repositori pengetahuan komprehensif 44 mata kuliah wajib S1 Informatika Universitas Diponegoro (Kurikulum 2020). Format Markdown murni siap cerna untuk LLM dan AI Agents.
+
+## File Struktur Utama
+- README.md: Dokumentasi umum proyek dan arsitektur repositori
+- INVENTARIS_BERKAS.md: Rekapitulasi status 88 berkas kajian dan 1.436 berkas arsip mentah
+- AGENT_GUIDE.md: Panduan instruksi sistem bagi AI Agent untuk membaca dan menavigasi berkas
+
+## Repositori Kajian (RANGKUMAN_DAN_CONTOH_SOAL)
+Setiap folder mata kuliah berisi:
+- RANGKUMAN_MATERI.md: Peta konsep 14 pertemuan, diagram Mermaid, rumus matematis
+- CONTOH_SOAL_DAN_PEMBAHASAN.md: Bank soal riil UTS/UAS, step-by-step solutions, exam traps, oral defense questions
+
+### Semester 1
+- RANGKUMAN_DAN_CONTOH_SOAL/01_Semester_1/Dasar_Pemrograman/
+- RANGKUMAN_DAN_CONTOH_SOAL/01_Semester_1/Dasar_Sistem/
+- RANGKUMAN_DAN_CONTOH_SOAL/01_Semester_1/Struktur_Diskrit/
+- RANGKUMAN_DAN_CONTOH_SOAL/01_Semester_1/Matematika_I/
+- RANGKUMAN_DAN_CONTOH_SOAL/01_Semester_1/Logika_Informatika/
+- RANGKUMAN_DAN_CONTOH_SOAL/01_Semester_1/Pancasila_dan_Kewarganegaraan/
+- RANGKUMAN_DAN_CONTOH_SOAL/01_Semester_1/Bahasa_Inggris/
+- RANGKUMAN_DAN_CONTOH_SOAL/01_Semester_1/Olah_Raga/
+
+### Semester 2
+- RANGKUMAN_DAN_CONTOH_SOAL/02_Semester_2/Algoritma_dan_Pemrograman/
+- RANGKUMAN_DAN_CONTOH_SOAL/02_Semester_2/Aljabar_Linier/
+- RANGKUMAN_DAN_CONTOH_SOAL/02_Semester_2/Bahasa_Indonesia/
+- RANGKUMAN_DAN_CONTOH_SOAL/02_Semester_2/Internet_of_Things/
+- RANGKUMAN_DAN_CONTOH_SOAL/02_Semester_2/Matematika_II/
+- RANGKUMAN_DAN_CONTOH_SOAL/02_Semester_2/Organisasi_dan_Arsitektur_Komputer/
+- RANGKUMAN_DAN_CONTOH_SOAL/02_Semester_2/Pendidikan_Agama/
+
+### Semester 3
+- RANGKUMAN_DAN_CONTOH_SOAL/03_Semester_3/Basis_Data/
+- RANGKUMAN_DAN_CONTOH_SOAL/03_Semester_3/Interaksi_Manusia_Komputer/
+- RANGKUMAN_DAN_CONTOH_SOAL/03_Semester_3/Metode_Numerik/
+- RANGKUMAN_DAN_CONTOH_SOAL/03_Semester_3/Sistem_Operasi/
+- RANGKUMAN_DAN_CONTOH_SOAL/03_Semester_3/Statistika/
+- RANGKUMAN_DAN_CONTOH_SOAL/03_Semester_3/Struktur_Data/
+
+### Semester 4
+- RANGKUMAN_DAN_CONTOH_SOAL/04_Semester_4/Grafika_dan_Komputasi_Visual/
+- RANGKUMAN_DAN_CONTOH_SOAL/04_Semester_4/Jaringan_Komputer/
+- RANGKUMAN_DAN_CONTOH_SOAL/04_Semester_4/Manajemen_Basis_Data/
+- RANGKUMAN_DAN_CONTOH_SOAL/04_Semester_4/Pemrograman_Berorientasi_Objek/
+- RANGKUMAN_DAN_CONTOH_SOAL/04_Semester_4/Rekayasa_Perangkat_Lunak/
+- RANGKUMAN_DAN_CONTOH_SOAL/04_Semester_4/Sistem_Cerdas/
+
+### Semester 5
+- RANGKUMAN_DAN_CONTOH_SOAL/05_Semester_5/Keamanan_dan_Jaminan_Informasi/
+- RANGKUMAN_DAN_CONTOH_SOAL/05_Semester_5/Kewirausahaan/
+- RANGKUMAN_DAN_CONTOH_SOAL/05_Semester_5/Komputasi_Tersebar_dan_Paralel/
+- RANGKUMAN_DAN_CONTOH_SOAL/05_Semester_5/Pembelajaran_Mesin/
+- RANGKUMAN_DAN_CONTOH_SOAL/05_Semester_5/Pengembangan_Berbasis_Platform/
+- RANGKUMAN_DAN_CONTOH_SOAL/05_Semester_5/Proyek_Perangkat_Lunak/
+- RANGKUMAN_DAN_CONTOH_SOAL/05_Semester_5/Sistem_Informasi/
+
+### Semester 6
+- RANGKUMAN_DAN_CONTOH_SOAL/06_Semester_6/Analisis_dan_Strategi_Algoritma/
+- RANGKUMAN_DAN_CONTOH_SOAL/06_Semester_6/Manajemen_Proyek/
+- RANGKUMAN_DAN_CONTOH_SOAL/06_Semester_6/Masyarakat_dan_Etika_Profesi/
+- RANGKUMAN_DAN_CONTOH_SOAL/06_Semester_6/Praktik_Kerja_Lapangan/
+- RANGKUMAN_DAN_CONTOH_SOAL/06_Semester_6/Uji_Perangkat_Lunak/
+
+### Semester 7
+- RANGKUMAN_DAN_CONTOH_SOAL/07_Semester_7/Metodologi_dan_Penulisan_Ilmiah/
+- RANGKUMAN_DAN_CONTOH_SOAL/07_Semester_7/Penambangan_Data/
+- RANGKUMAN_DAN_CONTOH_SOAL/07_Semester_7/Teori_Bahasa_dan_Otomata/
+
+### Semester 8
+- RANGKUMAN_DAN_CONTOH_SOAL/08_Semester_8/Kuliah_Kerja_Nyata/
+- RANGKUMAN_DAN_CONTOH_SOAL/08_Semester_8/Tugas_Akhir/
